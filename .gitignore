@@ -1,0 +1,4 @@
+node_modules
+
+common/js/vendors.min.js
+common/css/vendors.css

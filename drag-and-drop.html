@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="common/css/vendors.css">
+		<link rel="stylesheet" href="common/css/default.css">
+		<link rel="stylesheet" href="drag-and-drop/css/drag-and-drop.css">
+	</head>
+	<body>
+
+		<div id="dnd1"></div>
+		<div id="dnd2"></div>
+		
+		<script type="text/javascript" src="common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="drag-and-drop/js/jquery.drag-and-drop.js"></script>
+		<script>
+			$('#dnd1').dragAndDrop({
+				drags: [
+					{
+						text: "Primer text",
+						reference: '1'
+					},
+					{
+						text: "Seugnod text",
+						reference: '2'
+					}
+				],
+				drops:[
+					{
+						id: "1",
+						text: "Primer cajon",
+					},
+					{
+						id: "2",
+						text: "Segundo cajon",
+					},
+				]
+			});
+		</script>
+	</body>
+</html>
