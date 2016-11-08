@@ -9,6 +9,9 @@
 
 	$.popup = function(opts) {
 
+		if (typeof opts == 'string')
+			opts = {content: opts};
+
 		var defaults = {}
 
 		var options = $.extend({}, defaults, opts);
@@ -35,7 +38,17 @@
 			var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?rel=0&autoplay=1';
 			var iframe = $('<iframe>', {width: '100%', height: '400', src: src, allowfullscreen:true})
 								.appendTo(elems.content);
-		}		
+		}
+
+		if (options.id) {
+			elems.content.html( $('#' + options.id).html() );
+		}
+
+		if (options.content) {
+			elems.content.html(options.content);
+		}
+
+		elems.wrapper.fadeIn(250);
 	}
 
 })(jQuery)

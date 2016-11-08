@@ -8,11 +8,33 @@
 		<link rel="stylesheet" href="popup/css/popup.css">
 	</head>
 	<body>
+
+		<button id="btnYoutube" class="btn btn-default">Popup Youtube</button>
+		<button id="btnWithID" class="btn btn-default">Popup Con ID</button>
+		<button id="btnContent" class="btn btn-default">Popup desde contenido (Script template)</button>
 		
 		<script type="text/javascript" src="common/js/vendors.min.js"></script>
 		<script type="text/javascript" src="popup/js/jquery.popup.js"></script>
+	
+		<!-- My script template for Popup 1 -->
+		<script id="popup" type="text/template">
+			<h2>Mi titulo</h2>
+			<p>Mi contenido</p>
+		</script>
+
 		<script>
-			$.popup({youtubeID: 'J2ffCgXZFPU'});
+			$('#btnYoutube').on('click', function(){ 
+				$.popup({youtubeID: 'J2ffCgXZFPU'});
+			});
+
+			$('#btnWithID').on('click', function(){
+				$.popup({id: 'popup'});
+			});
+
+			$('#btnContent').on('click', function(){
+				// $.popup({content: 'Esto es contenido en el popup'});
+				$.popup('Esto es contenido en el popup');
+			});
 		</script>
 	</body>
 </html>
