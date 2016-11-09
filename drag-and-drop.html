@@ -5,37 +5,86 @@
 		<link rel="stylesheet" href="common/css/vendors.css">
 		<link rel="stylesheet" href="common/css/default.css">
 		<link rel="stylesheet" href="drag-and-drop/css/drag-and-drop.css">
+		<link rel="stylesheet" href="popup/css/popup.css">
 	</head>
 	<body>
 
+		<div class="main">
+			<h1 style="color:#000;font-size:40px">Test de segmentos</h1>
+			<p style="color:#000;font-size: 20px;">Uno de los segmentos de clientes que esta relacionado con los motivos son:</p>
+		</div>
+
 		<div id="dnd1"></div>
-		<div id="dnd2"></div>
 		
 		<script type="text/javascript" src="common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="popup/js/jquery.popup.js"></script>
 		<script type="text/javascript" src="drag-and-drop/js/jquery.drag-and-drop.js"></script>
+
+		<!-- My script template for Popup 1 -->
+		<script id="drag-autodireccion" type="text/template">
+			<h2 class="text-pop">Autodirección</h2>
+			<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió</p>
+		</script>
+
+		<!-- My script template for Popup 1 -->
+		<script id="drag-imagen" type="text/template">
+			<h2 class="text-pop">Mi titulo imagen</h2>
+			<p>Mi contenido imagen</p>
+		</script>
+
 		<script>
+
 			$('#dnd1').dragAndDrop({
 				drags: [
 					{
-						text: "Primer text",
-						reference: '1'
+						text: "Imagen",
+						reference: '1',							
 					},
 					{
-						text: "Seugnod text",
+						text: "Balance",
+						reference: '1',
+					},
+					{
+						text: "Gratificación",
+						reference: '10'
+					},
+					{
+						text: "Conservación",
+						reference: '2'
+					},
+					{
+						text: "Cuidado",
 						reference: '2'
 					}
 				],
 				drops:[
 					{
-						id: "1",
-						text: "Primer cajon",
+						id: "11",
+						text: "Protección",
 					},
 					{
 						id: "2",
-						text: "Segundo cajon",
+						text: "Seguridad",
 					},
+					{
+						id: "12",
+						text: "Vitalidad",
+					},
+					{
+						id: "13",
+						text: "Hedonismo",
+					},
+					{
+						id: "1",
+						text: "Autodirección",
+						popupID: "drag-autodireccion"
+					}
 				]
 			});
 		</script>
 	</body>
 </html>
+
+
+
+

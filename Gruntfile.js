@@ -27,6 +27,7 @@ module.exports = function(grunt) {
 			target: {
 				files: {
 					'common/css/vendors.css': 	[
+						"common/css/fonts.css",
 						"node_modules/bootstrap/dist/css/bootstrap.css",
 						"node_modules/jquery-ui/dist/jquery-ui.css",
 						"node_modules/animate.css/animate.min.css"
