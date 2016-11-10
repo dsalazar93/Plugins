@@ -23,21 +23,20 @@
 			elems.left = $('<div>', { Class: 'col-md-6 lnt-dnd-left'}).appendTo(elems.row);
 			
 			elems.ulRight = $('<ul>').appendTo(elems.right);
-			elems.ulLeft = $('<ul>').appendTo(elems.left);
+			elems.ulLeft = $('<ul>').appendTo(elems.left);//.sortable({ revert: true });
 
+			options.drags.forEach(function(elem){		
 
-			options.drags.forEach(function(elem){
-				var li = $('<li>', { Class: 'lnt-content-middle'})
+				var li = $('<li>', { Class: 'lnt-content-middle draggDiv'})  
 							.appendTo(elems.ulLeft)
 							.html(elem.text)
 							.data('reference', elem.reference)
 							.draggable({ revert: true });
 
-
 			});
 
 			options.drops.forEach(function(elem){
-				var li = $('<li>', { Class: 'lnt-content-middle'})
+				var li = $('<li>', { Class: 'lnt-content-middle lnt-dnd-hover'})
 							.appendTo(elems.ulRight)
 							.html('<div>' + elem.text + '</div>')
 							.droppable({
@@ -51,6 +50,9 @@
 
 										if(elem.popuptext)
 											$.popup(elem.popuptext);
+
+										$( this )
+          									.addClass( "li-dnd" );
 									}
 								}
 							})

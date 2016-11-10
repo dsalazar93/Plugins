@@ -35,10 +35,12 @@
 		<script>
 
 			$('#dnd1').dragAndDrop({
+
+
 				drags: [
 					{
 						text: "Imagen",
-						reference: '1',							
+						reference: '1',						
 					},
 					{
 						text: "Balance",
@@ -56,7 +58,9 @@
 						text: "Cuidado",
 						reference: '2'
 					}
+					
 				],
+
 				drops:[
 					{
 						id: "11",
@@ -81,7 +85,30 @@
 					}
 				]
 			});
+
+
 		</script>
+
+
+    <script>
+        $(function() {
+            $(".draggDiv").draggable({});
+ 
+            initDroppable($(".lnt-dnd-hover"));
+            function initDroppable($elements) {
+                $elements.droppable({
+                    hoverClass: "ui-drop-hover",
+
+                    over: function(event, ui) {
+                        var $this = $(this);
+                    },
+
+                });
+            }
+        });
+    </script>
+
+
 	</body>
 </html>
 

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="common/css/vendors.css">
+		<link rel="stylesheet" href="common/css/default.css">
+		<link rel="stylesheet" href="memory-game/css/memory-game.css">
+<!-- 		<link rel="stylesheet" href="popup/css/popup.css"> -->
+	</head>
+
+	<body>
+
+		<div class="main">
+			<h1 style="color:#000;font-size:40px">Test de segmentos</h1>
+			<p style="color:#000;font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi corporis deleniti nulla dolores culpa, doloribus eaque odit praesentium odio soluta sed illum repellendus delectus perspiciatis, ducimus dolor eum. Voluptate, enim!</p>
+		</div>
+
+		<div id="mg1"></div>
+
+		<script type="text/javascript" src="common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="popup/js/jquery.popup.js"></script>
+		<script type="text/javascript" src="memory-game/js/jquery.memory-game.js"></script>
+
+		<script>
+
+			$('#mg1').memoryGame({
+				game: [
+					{
+						text: "Imagen",
+						reference: '1',							
+					},
+					{
+						text: "Balance",
+						reference: '1',
+					},
+					{
+						text: "Gratificación",
+						reference: '10'
+					},
+					{
+						text: "Conservación",
+						reference: '2'
+					},
+					{
+						text: "Cuidado",
+						reference: '2'
+					}
+				],
+				drops:[
+					{
+						id: "11",
+						text: "Protección",
+					},
+					{
+						id: "2",
+						text: "Seguridad",
+					},
+					{
+						id: "12",
+						text: "Vitalidad",
+					},
+					{
+						id: "13",
+						text: "Hedonismo",
+					},
+					{
+						id: "1",
+						text: "Autodirección",
+						popupID: "drag-autodireccion"
+					}
+				]
+			});
+		</script> 
+
+
+
+	</body>
+
+</html>
+
+
+
+
