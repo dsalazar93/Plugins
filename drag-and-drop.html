@@ -6,42 +6,11 @@
 		<link rel="stylesheet" href="common/css/default.css">
 		<link rel="stylesheet" href="drag-and-drop/css/drag-and-drop.css">
 		<link rel="stylesheet" href="popup/css/popup.css">
-
-<style>
-.div1, .div2 {
-    float: left;
-    width: 100px;
-    height: 35px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-}
-</style>
-
-
 	</head>
 	<body>
 
-		<div class="main">
-			<h1 style="color:#000;font-size:40px">Test de segmentos</h1>
-			<p style="color:#000;font-size: 20px;">Uno de los segmentos de clientes que esta relacionado con los motivos son:</p>
-		</div>
-
 		<div id="dnd1"></div>
 		
-
-<h2>Drag and Drop</h2>
-<p>Drag the image back and forth between the two div elements.</p>
-
-<div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <img src="http://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-</div>
-
-<div class="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-
-
-
 		<script type="text/javascript" src="common/js/vendors.min.js"></script>
 		<script type="text/javascript" src="popup/js/jquery.popup.js"></script>
 		<script type="text/javascript" src="drag-and-drop/js/jquery.drag-and-drop.js"></script>
@@ -58,14 +27,8 @@
 			<p>Mi contenido imagen</p>
 		</script>
 
-
-
-
 		<script>
-
 			$('#dnd1').dragAndDrop({
-
-
 				drags: [
 					{
 						text: "Imagen",
@@ -86,10 +49,8 @@
 					{
 						text: "Cuidado",
 						reference: '2'
-					}
-					
+					}					
 				],
-
 				drops:[
 					{
 						id: "11",
@@ -114,44 +75,7 @@
 					}
 				]
 			});
-
-
-		</script>
-
-
-    <script>
-        $(function() { 
-            initDroppable($(".lnt-dnd-hover"));
-            function initDroppable($elements) {
-                $elements.droppable({
-                    hoverClass: "ui-drop-hover",
-
-
-                    over: function(event, ui) {
-                        var $this = $(this);
-
-                    },
-
-                });
-            }
-        });
-
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-
-    </script>
-
+	    </script>
 	</body>
 </html>
 
