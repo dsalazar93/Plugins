@@ -23,15 +23,15 @@
 			elems.left = $('<div>', { Class: 'col-md-6 lnt-dnd-left'}).appendTo(elems.row);
 			
 			elems.ulRight = $('<ul>').appendTo(elems.right);
-			elems.ulLeft = $('<ul>').appendTo(elems.left);//.sortable({ revert: true });
+			elems.ulLeft = $('<ul>', { Class: 'sortable'}).appendTo(elems.left).sortable({ revert: true });
 
 			options.drags.forEach(function(elem){		
 
-				var li = $('<li>', { Class: 'lnt-content-middle draggDiv'})  
+				var li = $('<li>', { Class: 'lnt-content-middle draggable'})  
 							.appendTo(elems.ulLeft)
 							.html(elem.text)
 							.data('reference', elem.reference)
-							.draggable({ revert: true });
+							// .draggable({ revert: true });
 
 			});
 
@@ -41,9 +41,18 @@
 							.html('<div>' + elem.text + '</div>')
 							.droppable({
 								drop: function(evt, origin) {
+									
+									    // ev.preventDefault();
+									    // var data = ev.dataTransfer.getData("text");
+									    // ev.target.appendChild(document.getElementById(data));
+
 									var $origin = $(origin.helper);
 									if ($origin.data('reference') == elem.id) {
+										/**
+										 * Remueve cajas de la derecha cuando hacemos drop sobre el drag
+										 */
 										$origin.remove();
+
 
 										if(elem.popupID)
 											$.popup({ id: elem.popupID});
@@ -51,8 +60,7 @@
 										if(elem.popuptext)
 											$.popup(elem.popuptext);
 
-										$( this )
-          									.addClass( "li-dnd" );
+
 									}
 								}
 							})
