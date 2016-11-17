@@ -6,11 +6,13 @@
 			padding 0
 
 			li
-				background-color #eee
-				border thin solid #ccc
+				background-color none //#eee
+				// border thin solid #ccc
 				margin 1em 0
-				padding 1em
+				margin-left 25%
+				padding 6px
 				width 100%
+				z-index 1002
 
 				
 	.lnt-dnd-right
@@ -20,18 +22,61 @@
 			padding 0
 			
 			li
-				background-color #eee
-				border thin solid #ccc
+				background-color none //#eee
+				// border thin solid #ccc
 				position relative
-				height 100px
-				margin 1em 0
+				margin-left 28% !important
+				height 57px
+				margin 11px 0
+				width 60%
+				font-size 17px
+				position relative
+				font-weight bold
+
 	
 	.lnt-content-middle
 		div
-			text-align center
+			// text-align left
 			
 
 .ui-drop-hover
 	background-color: #FFFF55 !important
+	cursor pointer !important
 	border: 2px solid #bbb
 	width: 100%
+	
+.dragabble
+	div
+		text-align left
+						
+.droppable
+	div
+		text-align left
+		hr
+			margin-top 5px !important
+			margin-bottom 0px !important
+			border-top 1px solid #b9b9b9 !important
+			
+
+.imgDrag
+	width 45px !important
+
+span.textDrag
+	font-size: 17px;
+	position: relative;
+	left: 14px;
+	top: 3px;
+	font-weight: bold;
+	
+.none
+	display block
+
+.lnt-css-drag
+	background #ccc !important
+	cursor pointer !important
+	left -142px !important
+	top -11px !important
+	width 100% !important
+	position absolute !important
+	padding 8px !important
+	

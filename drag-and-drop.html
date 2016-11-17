@@ -9,6 +9,11 @@
 	</head>
 	<body>
 
+		<div class="main">
+			<h1 style="width: 80%;margin:auto;color:#000;font-size:30px;text-align: center;padding-top: 2%;padding-bottom: 2%;">EVALÚA TUS CONOCIMIENTOS</h1>
+			<p style="width: 75%;margin:auto;color:#000;font-size: 18px;text-align: left;">Pon a prueba tus conocimientos sobre el modelo de posicionamiento uniéndo cada componente con la definición que mejo lo describa.</p>
+		</div>
+
 		<div id="dnd1"></div>
 		
 		<script type="text/javascript" src="common/js/vendors.min.js"></script>
@@ -23,7 +28,7 @@
 
 		<!-- My script template for Popup 1 -->
 		<script id="drag-imagen" type="text/template">
-			<h2 class="text-pop">Mi titulo imagen</h2>
+			<h2 class="textPop">Mi titulo imagen</h2>
 			<p>Mi contenido imagen</p>
 		</script>
 
@@ -31,47 +36,56 @@
 			$('#dnd1').dragAndDrop({
 				drags: [
 					{
-						text: "Imagen",
-						reference: '1',						
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Consumidor</span></div>",
+						reference: '1'					
 					},
 					{
-						text: "Balance",
-						reference: '1',
-					},
-					{
-						text: "Gratificación",
-						reference: '10'
-					},
-					{
-						text: "Conservación",
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Mercado</span></div>",
 						reference: '2'
 					},
 					{
-						text: "Cuidado",
-						reference: '2'
-					}					
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Promesa</span></div>",
+						reference: '3'
+					},
+					{
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Personalidad</span></div>",
+						reference: '4'
+					},
+					{
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Esencia de marca</span></div>",
+						reference: '5'
+					},
+					{
+						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Identidad</span></div>",
+						reference: '6'
+					}						
 				],
 				drops:[
 					{
-						id: "11",
-						text: "Protección",
+						id: "1",
+						text: "Atributos positivos que se asocian a la marca<hr>"
 					},
 					{
 						id: "2",
-						text: "Seguridad",
+						text: "Oferta que responde al insight identificado<hr>"
 					},
 					{
-						id: "12",
-						text: "Vitalidad",
+						id: "3",
+						text: "Genera reconocimiento de la marca en el mercado<hr>"
 					},
 					{
-						id: "13",
-						text: "Hedonismo",
+						id: "4",
+						text: "Lo que la marca representa o queremos que represente<hr>"
 					},
 					{
-						id: "1",
-						text: "Autodirección",
-						popupID: "drag-autodireccion"
+						id: "5",
+						text: "Foco principal de los negocios de Grupo Nutresa<hr>",
+						popupID: "drag-imagen"
+					},
+					{
+						id: "6",
+						text: "Define qué está obteniendo el consumidor desde la racional y emocional<hr>",
+						popupID: "drag-imagen"
 					}
 				]
 			});
