@@ -78,15 +78,15 @@
 
 
 
-									// if ($origin.data('reference') == elem.id) {
-									// 	$origin.remove();
+									if ($origin.data('reference') == elem.id) {
+										// $origin.remove();
 
-									// 	if(elem.popupID)
-									// 		$.popup({ id: elem.popupID});
+										if(elem.popupID)
+											$.popup({ id: elem.popupID});
 
-									// 	if(elem.popuptext)
-									// 		$.popup(elem.popuptext);
-									// }
+										if(elem.popuptext)
+											$.popup(elem.popuptext);
+									}
 
 								}
 							})
