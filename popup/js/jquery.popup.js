@@ -35,9 +35,11 @@
 		});
 
 		if (options.youtubeID) {
-			var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?rel=0&autoplay=1';
-			var iframe = $('<iframe>', {width: '100%', height: '400', src: src, allowfullscreen:true})
-								.appendTo(elems.content);
+			elems.content.css('padding', '0');
+			elems.video = $('<div>', {Class: 'lnt-video'}).appendTo(elems.content);
+			var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0';
+			var iframe = $('<iframe>', {width: '100%', height: '100%', src: src, allowfullscreen:true})
+								.appendTo(elems.video);
 		}
 
 		if (options.id) {
