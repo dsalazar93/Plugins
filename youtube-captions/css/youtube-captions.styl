@@ -1,31 +1,71 @@
 .lnt-youtube-captions
-	width 800px
+	max-width 100%
 	
 	.player
-		padding-bottom 56.25%
-		position relative
-		height 0
+		width 100%
+		
+		> div
+			padding-bottom 56.25%
+			position relative
+			height 0
 	
-		iframe
-			left 0
-			height 100%
-			position absolute
-			top 0
-			width 100%
-	ul
-		list-style none
-		padding 0
-
-		li
-			cursor pointer
-			border thin solid #aaa
-			padding 1em
+			iframe
+				left 0
+				height 100%
+				position absolute
+				top 0
+				width 100%
+	
+	.lnt-youtube-playlist
+		ul
+			list-style none
 			margin 1em
-			
-			span
-				color #607D8B
-				font-size 2em
-				margin-right 1em
+			padding 0
 
-			&:hover
-				background-color #eee	
+			li
+				cursor pointer
+				border thin solid #aaa
+				padding .5em
+				margin-bottom 1em
+				transition .5s all ease
+				
+				span
+					color #607D8B
+					font-size 1em
+					margin-right 5px
+					vertical-align baseline
+
+				&:hover
+					background-color #eee
+					
+				&.lnt-caps-actived
+					background-color #799054
+					color white
+					
+					span
+						color white
+					
+					&:hover
+						background-color #eee
+						color initial
+						span
+							color #607D8B
+	
+	&.lnt-youtube-inline
+		overflow hidden
+		
+		.player
+			float left
+			width 60%
+		
+		.lnt-youtube-playlist
+			float left
+			margin 0
+			width 40%
+			
+			ul
+				li
+					margin-left 1em
+					overflow hidden
+					text-overflow ellipsis
+					white-space nowrap

@@ -43,7 +43,17 @@
 			});
 
 			$('#btnWithID').on('click', function(){
-				$.popup({id: 'popup'});
+				$.popup({
+					id: 'popup',
+					onLoad: function(elems) {
+						console.log(elems)
+						
+						$.popup({ 
+							content: 'Segundo POPUP',
+							onClose: function(){ console.log('Cerrando') }
+						});
+					}
+				});
 			});
 
 			$('#btnContent').on('click', function(){

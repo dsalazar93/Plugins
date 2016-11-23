@@ -1,60 +1,94 @@
 ;(function($, window, undefined){
 
 	window.playersCount = window.playersCount || 0;
+	window.youtubeAPIReady = false;
+	window.onYouTubeIframeAPIReady = function() {
+		window.youtubeAPIReady = true;
+	}
+
+	// Agregando el script del API
+	if (!$('#youtubeAPI').length) {
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		tag.id = 'youtubeAPI'
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	}
 
 	$.fn.youtubeCaptions = function(opts){
 
-		var defaults = {};
-		var options = $.extend({}, defaults, opts);
-
-		// Agregando el script del API
-		if (!$('#youtubeAPI').length) {
-			var tag = document.createElement('script');
-			tag.src = "https://www.youtube.com/iframe_api";
-			tag.id = 'youtubeAPI'
-			var firstScriptTag = document.getElementsByTagName('script')[0];
-			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		var defaults = {
+			width: '100%'
 		}
+
+		var options = $.extend({}, defaults, opts);
 
 		return this.each(function(){
 			var $this = $(this)
 				,player
+				,playlist = undefined
 				,videoTime = 0
 				,timeUpdater		
 				,playerID = 'player-' + window.playersCount++
 				,captions = $this.find('li');
 
-			if ( $this.hasClass('player-instanced') ) return;
+			if ( $this.hasClass('player-instanced') ) {
+				$this.data('yt').play();
+				return;
+			}
 
-			$this.addClass('player-instanced');
+			$this.addClass('player-instanced')
+				 .css('width', options.width)
+				 .data('yt',{
+				 				play: function() { if(player.playVideo) player.playVideo(); },
+				 				pause: function() {  if(player.pauseVideo) player.pauseVideo(); },
+				 				stop: function() { if(player.stopVideo) plater.stopVideo(); }
+				 			});
 			
-			$('<div>', { Class: 'player' })
-					.append('<div id="' + playerID + '"></div>')
+			var playerDiv = $('<div>', { Class: 'player' })
+					.append('<div><div id="' + playerID + '"></div></div>')
 					.prependTo($this);
 
 			captions.each(function(){
 				var $this = $(this);
-				$this.prepend('<span class="icon-play"></span>');
 				$this.on('click', function(){
 					player.seekTo( $this.data('time') );
 				});
 			});
-			
-			window.onYouTubeIframeAPIReady = function() {
-				console.log($this)
-				player = new YT.Player(playerID, {
-					height: '100%',
-					width: '100%',
-					videoId: $this.data('id'),
-					events: {
-						'onReady': _events.onPlayerReady,
-						'onStateChange': _events.onPlayerStateChange
-					}
+
+			if (options.height) {
+				playlist = $this.find('.lnt-youtube-playlist')
+					 .height( typeof options.height == 'number' ? options.height : playerDiv.height() )
+					 .jScrollPane({ contentWidth: '0px' });
+
+				$(window).on('resize', function(){
+					playlist.height( typeof options.height == 'number' ? options.height : playerDiv.height() );
+					playlist.data('jsp').reinitialise();
 				});
 			}
 
 			// Eventos necesarios para el API.
 			var _events = {
+
+				init: function() {
+					if (window.youtubeAPIReady) {
+						player = new YT.Player(playerID, {
+							height: '100%',
+							width: '100%',
+							videoId: $this.data('id'),
+							playerVars: {
+								showinfo: 0,
+								rel: 0
+							},
+							events: {
+								'onReady': _events.onPlayerReady,
+								'onStateChange': _events.onPlayerStateChange
+							}
+						});
+					} else {
+						setTimeout(_events.init, 1000);
+					}
+				},
 
 				/**
 				 * The API will call this function when the video player is ready.
@@ -83,11 +117,17 @@
 				 * When the time changes, this will be called.
 				 */
 				onProgress: function(currentTime) {
-					console.log(currentTime)
 					captions.each(function(){
 						var $this = $(this);
-						if ($this.data('time') < currentTime && !$this.hasClass('fadeInRight'))
-							$this.addClass('fadeInRight');
+						if ($this.data('time') < currentTime && !$this.hasClass('fadeInRight')) {
+							$this.addClass('lnt-caps-actived');
+							
+							if (playlist) 
+								playlist.data('jsp').scrollToElement($this);
+
+						} else if ($this.data('time') > currentTime) {
+							$this.removeClass('lnt-caps-actived');
+						}
 					});
 				},
 
@@ -105,6 +145,8 @@
 					 }
 				}
 			}
+
+			_events.init();
 		});
 	}
 })(jQuery, window);
