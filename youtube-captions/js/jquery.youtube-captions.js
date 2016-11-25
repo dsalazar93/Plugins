@@ -18,7 +18,8 @@
 	$.fn.youtubeCaptions = function(opts){
 
 		var defaults = {
-			width: '100%'
+			width: '100%',
+			autoplay: 0
 		}
 
 		var options = $.extend({}, defaults, opts);
@@ -57,12 +58,14 @@
 			});
 
 			if (options.height) {
-				playlist = $this.find('.lnt-youtube-playlist')
+				playlist = $this.find('.lnt-youtube-panel')
 					 .height( typeof options.height == 'number' ? options.height : playerDiv.height() )
+					 .find('.lnt-youtube-playlist')
 					 .jScrollPane({ contentWidth: '0px' });
 
 				$(window).on('resize', function(){
-					playlist.height( typeof options.height == 'number' ? options.height : playerDiv.height() );
+					$this.find('.lnt-youtube-panel')
+						 .height( typeof options.height == 'number' ? options.height : playerDiv.height() );
 					playlist.data('jsp').reinitialise();
 				});
 			}
@@ -78,11 +81,12 @@
 							videoId: $this.data('id'),
 							playerVars: {
 								showinfo: 0,
-								rel: 0
+								rel: 0,
+								autoplay: options.autoplay
 							},
 							events: {
 								'onReady': _events.onPlayerReady,
-								'onStateChange': _events.onPlayerStateChange
+								'onStateChange': _events.onPlayerStateChange,
 							}
 						});
 					} else {

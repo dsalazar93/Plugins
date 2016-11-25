@@ -15,8 +15,22 @@
 				position absolute
 				top 0
 				width 100%
-	
+				
+	.lnt-youtube-panel
+		overflow hidden
+		
+		h1
+			background-color #eee
+			border-bottom 2px solid #aaa
+			font-size 28px
+			font-weight bold
+			margin 0
+			padding 9px
+			text-align center
+		
 	.lnt-youtube-playlist
+		height calc(100% - 50px)
+		
 		ul
 			list-style none
 			margin 1em
@@ -58,14 +72,14 @@
 			float left
 			width 60%
 		
-		.lnt-youtube-playlist
+		.lnt-youtube-panel
 			float left
 			margin 0
 			width 40%
 			
-			ul
-				li
-					margin-left 1em
-					overflow hidden
-					text-overflow ellipsis
-					white-space nowrap
+			.lnt-youtube-playlist			
+				ul
+					li
+						overflow hidden
+						text-overflow ellipsis
+						white-space nowrap
