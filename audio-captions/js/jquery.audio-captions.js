@@ -92,7 +92,7 @@
 				 * This function is called when the current playlist is ended.
 				 */
 				onended: function() {
-					
+					if(options.onended) options.onended();
 				}
 			}
 
