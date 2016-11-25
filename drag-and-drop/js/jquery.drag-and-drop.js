@@ -1,18 +1,10 @@
 ;(function($, undefined){
 	"use strict";
 
-	if (!$.popup) {
-		alert('jQuery Popup is not defined');
-		$.popup = function(){};
-	}
-
 	$.fn.dragAndDrop = function(opts){
 
 		var defaults = {}
-
 		var options = $.extend({}, defaults, opts);
-
-		var flag = true;
 
 		return this.each(function(){
 			var $this = $(this);
@@ -24,79 +16,102 @@
 			elems.left = $('<div>', { Class: 'col-md-3 lnt-dnd-left'}).appendTo(elems.row);
 			elems.right = $('<div>', { Class: 'col-md-9 lnt-dnd-right'}).appendTo(elems.row);
 			
-			elems.ulLeft = $('<ul>').appendTo(elems.left).sortable({ revert: flag });
+			elems.ulLeft = $('<ul>').appendTo(elems.left).sortable({ revert: true });
 			elems.ulRight = $('<ul>').appendTo(elems.right);
 
+			elems.buttons = $('<div>', {Class: 'buttons'}).appendTo(elems.container);
+
+			elems.btnReset = $('<button>', {Class: 'btn btn-primary'})
+								.html('Limpiar respuesta')
+								.appendTo(elems.buttons)
+								.on('click', function(){
+												elems.ulLeft.find('.dropped').removeClass();
+												elems.ulRight.find('.dropped')
+															 .removeClass('dropped')
+															 .data('reference', null)
+															 .find('div').removeClass();
+											 });
+
+			elems.btnCheck = $('<button>', {Class: 'btn btn-success'})
+								.html('Verificar respuesta')
+								.appendTo(elems.buttons)
+								.on('click', function(){
+												var data = {};
+												
+												elems.ulRight.find('li').each(function(){
+													var $this = $(this);
+													data[$this.data('id')] = $this.data('reference');
+												});
+
+												if (options.onCheck)
+													options.onCheck(data);
+											 });
+
 			options.drags.forEach(function(elem){
-				var li = $('<li>', { Class: 'lnt-content-middle draggable'})  
-							.appendTo(elems.ulLeft)
-							.html(elem.text)
+				var li = $('<li>', { Class: 'draggable'})
 							.data('reference', elem.reference)
-							// .draggable( {revert: true } );
-														
+							.html('<div></div>' + elem.text);
+
+				// Ordenar aleatoriamente
+				if (Math.random() < 0.5)
+					li.appendTo(elems.ulLeft);
+				else
+					li.prependTo(elems.ulLeft);
+
+				li.find('div').addClass(elem.reference);
+
 			});
 
 			options.drops.forEach(function(elem){
-				var li = $('<li>', { Class: 'lnt-content-middle droppable'})
-							.appendTo(elems.ulRight)
-							.html('<div>' + elem.text + '</div>')
+				var li = $('<li>')							
+							.html('<div></div><span>' + elem.text + '</span>')
+							.data('id', elem.id)
 							.droppable({
 								hoverClass: "ui-drop-hover",
-								drop: function(evt, origin) {
-									flag = false;
+								over: function(evt, origin) {
 									var $origin = $(origin.helper)
 										,$this = $(this);
 
-										if ($origin.data('clone')) {
-											$this.append($origin);
-											return;
-										}
+									if ($origin.hasClass('dropped')
+											|| $this.hasClass('dropped')) return;
 
-										$origin.clone()
-											   .draggable({ revert: true })
-											   .removeClass('draggable')
-											   .removeClass('ui-sortable-helper')
-											   .addClass('lnt-css-drag')
-											 //   .css({
-												// 	left : '-142px',
-												// 	top: '-11px',
-												// 	display: 'inline-block',
-												// 	width: '100%',	
-												// 	position: 'absolute',
-												// 	background: '#ccc',									
-												// 	padding: '8px'
+									$this.find('div')
+										 .addClass($origin.data('reference'));
 
-												// })
-												.appendTo($this)
-												.on('click', function() {
-													$(this).remove();
-														$origin.css('display', 'block');
-												})
-												.data('clone', true)
+								},
 
-										$origin.css('display', 'none')
+								out: function(evt, origin) {
+									var $origin = $(origin.helper)
+										,$this = $(this);
 
+									if ($origin.hasClass('dropped')
+											|| $this.hasClass('dropped')) return;
 
+									$this.find('div').removeClass();
+								},
 
-									if ($origin.data('reference') == elem.id) {
-										// $origin.remove();
+								drop: function(evt, origin) {
+									var $origin = $(origin.helper)
+										,$this = $(this);
 
-										if(elem.popupID)
-											$.popup({ id: elem.popupID});
+									if ($origin.hasClass('dropped')
+											|| $this.hasClass('dropped')) return;
 
-										if(elem.popuptext)
-											$.popup(elem.popuptext);
-									}
-
+									$origin.addClass('dropped');
+									$this.addClass('dropped')
+										 .data('reference', $origin.data('reference'));
 								}
-							})
+							});
+
+				// Ordenar aleatoriamente
+				if (Math.random() < 0.5)
+					li.appendTo(elems.ulRight);
+				else
+					li.prependTo(elems.ulRight);
 
 
 			});
 		});
 	}
 
-})(jQuery)
-
-//--------------------------------------------Revertir drag and drop--------------------------------------------------//
-//http://devilmaycode.altervista.org/revert-a-jquery-draggable-object-back-to-its-original-container-on-out-event-of-d/
+})(jQuery);

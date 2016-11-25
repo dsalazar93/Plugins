@@ -5,55 +5,12 @@
 		<link rel="stylesheet" href="../common/css/vendors.css">
 		<link rel="stylesheet" href="../common/css/default.css">
 		<link rel="stylesheet" href="css/drag-and-drop.css">
-		<link rel="stylesheet" href="../popup/css/popup.css">
-
-		<style>
-			.dragabble div {
-				text-align: left;
-			}
-									
-			.droppable div {
-				text-align: left;
-			}						
-
-			.imgDrag {
-				width: 45px !important;
-			}
-
-			span.textDrag {
-				font-size: 17px;
-				position: relative;
-				left: 14px;
-				top: 3px;
-			}
-
-			.none {
-				display: block;
-			}
-
-			.lnt-css-drag {
-				background: #ccc !important;
-				cursor: pointer !important;
-				left: -142px !important;
-				top: -11px !important;
-				width: 100% !important;
-				position: absolute !important;
-				padding: 8px !important;
-			}
-			.lnt-content-middle {
-				display: flex;
-				align-content: center;
-				flex-direction: column;
-				justify-content: center;
-			}
-		</style>
 	</head>
 	<body>
 
 		<div id="dnd1"></div>
 		
-		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
-		<script type="text/javascript" src="../popup/js/jquery.popup.js"></script>
+		<script type="text/javascript" src="../common/js/vendors.min.js"></script>		
 		<script type="text/javascript" src="js/jquery.drag-and-drop.js"></script>
 
 		<!-- My script template for Popup 1 -->
@@ -64,59 +21,24 @@
 
 		<script>
 			$('#dnd1').dragAndDrop({
+				onCheck: function(data) {
+					console.log(data);
+				},
 				drags: [
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Consumidor</span></div>",
-						reference: '1'					
-					},
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Mercado</span></div>",
-						reference: '2'
-					},
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Promesa</span></div>",
-						reference: '3'
-					},
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Personalidad</span></div>",
-						reference: '4'
-					},
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Esencia de marca</span></div>",
-						reference: '5'
-					},
-					{
-						text: "<div><img class='imgDrag' src='http://orig05.deviantart.net/d517/f/2012/037/a/6/circulo_png_original__by_airi001-d4owud6.png'><span class='textDrag'>Identidad</span></div>",
-						reference: '6'
-					}						
+					{ text: "1", reference: 'consumer' },
+					{ text: "2", reference: 'market' },
+					{ text: "3", reference: 'promise' },
+					{ text: "4", reference: 'presence' },
+					{ text: "5", reference: 'brand' },
+					{ text: "6", reference: 'identity' }
 				],
 				drops:[
-					{
-						id: "1",
-						text: "Atributos positivos que se asocian a la marca"
-					},
-					{
-						id: "2",
-						text: "Oferta que responde al insight identificado"
-					},
-					{
-						id: "3",
-						text: "Genera reconocimiento de la marca en el mercado"
-					},
-					{
-						id: "4",
-						text: "Lo que la marca representa o queremos que represente"
-					},
-					{
-						id: "5",
-						text: "Foco principal de los negocios de Grupo Nutresa",
-						popupID: "drag-imagen"
-					},
-					{
-						id: "6",
-						text: "Define qué está obteniendo el consumidor desde la racional y emocional",
-						popupID: "drag-imagen"
-					}
+					{ text: "¿Por qué o para qué viene la marca al mundo?", id: "consumer" },
+					{ text: "¿Por qué el consumidor va a preferir mi marca?", id: "market" },
+					{ text: "¿Qué hace la marca por el consumidor y cómo lo hace sentir?", id: "promise" },
+					{ text: "¿Cuáles son los valores y atributos de la marca?", id: "presence" },
+					{ text: "¿Qué representa o queremos que represente la marca?", id: "brand" },
+					{ text: "¿Cómo reconoce el consumidor a la marca?", id: "identity" }
 				]
 			});
 	    </script>

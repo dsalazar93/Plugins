@@ -7,12 +7,15 @@
 
 			li
 				border thin solid #ccc
+				cursor pointer
 				margin 1em 0
 				margin-left 25%
 				padding 6px
 				width 100%
 				z-index 1002
-
+				
+				&.dropped
+					background-color #eee
 				
 	.lnt-dnd-right
 		ul
@@ -29,10 +32,17 @@
 				width 60%
 				font-size 17px
 				position relative
-				font-weight bold			
+				font-weight bold
+				
+				&.dropped
+					background-color #eee
 
-.ui-drop-hover
-	background-color: #FFFF55 !important
-	cursor pointer !important
-	border: 2px solid #bbb
-	width: 100%
+	.ui-drop-hover
+		background-color: #ccc
+		
+	.buttons
+		text-align right
+		
+		button
+			display  inline-block
+			margin 1em
