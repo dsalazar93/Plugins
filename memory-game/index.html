@@ -1,75 +1,244 @@
 <!DOCTYPE HTML>
 <html lang="es">
 
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../common/css/vendors.css">
-		<link rel="stylesheet" href="../common/css/default.css">
-		<link rel="stylesheet" href="css/memory-game.css">
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../common/css/vendors.css">
+    <link rel="stylesheet" href="../common/css/default.css">
+    <link rel="stylesheet" href="css/memory-game.css">
+    <link rel="stylesheet" href="../popup/css/popup.css">
+</head>
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
 
-	<body>
+    html, body , .lnt-cont-memory{
+        /*height: 100%;*/
+    }
 
-		<div class="main">
-			<h1 style="color:#000;font-size:40px">Test de segmentos</h1>
-			<p style="color:#000;font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi corporis deleniti nulla dolores culpa, doloribus eaque odit praesentium odio soluta sed illum repellendus delectus perspiciatis, ducimus dolor eum. Voluptate, enim!</p>
-		</div>
+    .hide{
+        display:none;
+    }
 
-		<div id="mg1"></div>
+    .lnt-cont-memory {
+        height: 309px;
+    }
 
-		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
-		<script type="text/javascript" src="js/jquery.popup.js"></script>
-		<script type="text/javascript" src="js/jquery.memory-game.js"></script>
+    .memory-grid {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-perspective: 500px;
+        perspective: 500px;
+        max-height: 100%;
+        height: 100%;
+    }
+    .timer {
+        margin: auto;
+        text-align: center;
+        font-size: 57px;
+        font-weight: bold;
+    }
 
-		<script>
+    @-webkit-keyframes matchAnim {
+        0% {
+            background: #bcffcc;
+        }
+        100% {
+            background: white;
+        }
+    }
 
-			$('#mg1').memoryGame({
-				game: [
-					{
-						text: "Imagen",
-						reference: '1',							
-					},
-					{
-						text: "Balance",
-						reference: '1',
-					},
-					{
-						text: "Gratificación",
-						reference: '10'
-					},
-					{
-						text: "Conservación",
-						reference: '2'
-					},
-					{
-						text: "Cuidado",
-						reference: '2'
-					}
-				],
-				drops:[
-					{
-						id: "11",
-						text: "Protección",
-					},
-					{
-						id: "2",
-						text: "Seguridad",
-					},
-					{
-						id: "12",
-						text: "Vitalidad",
-					},
-					{
-						id: "13",
-						text: "Hedonismo",
-					},
-					{
-						id: "1",
-						text: "Autodirección",
-						popupID: "drag-autodireccion"
-					}
-				]
-			});
-		</script>
-	</body>
+    @keyframes matchAnim {
+        0% {
+            background: #bcffcc;
+        }
+        100% {
+            background: white;
+        }
+    }
+    .card {
+        float: left;
+        width: 20%;
+        height: 50%;
+        padding: 5px;
+        text-align: center;
+        display: block;
+        -webkit-perspective: 500px;
+        perspective: 500px;
+        position: relative;
+        cursor: pointer;
+        z-index: 50;
+        -webkit-tap-highlight-color: transparent;
+    }
+    @media (max-width: 800px) {
+        .card {
+            width: 25%;
+            height: 16.666%;
+        }
+    }
+    .card .inside {
+        width: 100%;
+        height: 100%;
+        display: block;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transition: .4s ease-in-out;
+        transition: .4s ease-in-out;
+        background: white;
+    }
+    .card .inside.picked, .card .inside.matched {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+    .card .inside.matched {
+        -webkit-animation: 1s matchAnim ease-in-out;
+        animation: 1s matchAnim ease-in-out;
+        -webkit-animation-delay: .4s;
+        animation-delay: .4s;
+    }
+    .card .front, .card .back {
+        border: 1px solid black;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+    }
+    .card .front img, .card .back img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        max-height: 100%;
+    }
+    .card .front {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+    @media (max-width: 800px) {
+        .card .front {
+            padding: 5px;
+        }
+    }
+    @media (max-width: 800px) {
+        .card .back {
+            padding: 10px;
+        }
+    }
+
+
+
+</style>
+<body>
+
+    <div class="timer">
+        <span>00:10</span>
+    </div>
+
+    <div class="lnt-cont-memory">
+        <div class="memory-grid"></div>
+    </div>
+
+
+    <button type="button" class="btn btn-warning hide btn-lnt" onclick="location.reload();">Volver a intentar</button>
+<!-- <div style="margin-top: 10px;" class="lnt-cont-memory">
+<div class="memory-grid"></div>
+</div>
+-->
+
+<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+<script type="text/javascript" src="js/jquery.memory-game.js"></script>
+<script type="text/javascript" src="../popup/js/jquery.popup.js"></script>
+
+<!-- My script template for Popup 1 -->
+<script id="drag-imagen" type="text/template">
+    <h2 class="textPop">Mi titulo imagen</h2>
+    <p>Mi contenido imagen</p>
+</script>
+
+
+<script id="drag-imagen-dos" type="text/template">
+    <h2 class="textPop">Mi titulo imagen</h2>
+    <p>Mi contenido imagen</p>
+</script>
+
+
+
+<script>
+    $('.memory-grid').memoryGame({
+
+        win: function() {
+            console.log('gano')
+        },
+
+        cardClicked: function() {
+            console.log('acerto')
+        },
+
+        timeMemory: function() {
+            var interval = setInterval(function() {
+                var timer = $('span').html();
+                timer = timer.split(':');
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+
+
+                if (minutes == 0 && seconds == 0) {
+
+                    $("body").css('background-color', 'rgb(228, 228, 228)');
+                    $(".btn-lnt").removeClass("hide");
+                    console.log('muestra');
+                }
+                clearInterval(interval);
+            }, 1000);
+
+        },
+
+
+        cards : [
+        {
+            name: "php",
+            img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/php-logo_1.png",
+            id: 1,
+            backgroundImg: "http://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/p7kAAOxydlFTApPo/$_35.JPG"
+        },
+        {
+            name: "css3",
+            img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/css3-logo.png",
+            id: 2,
+            backgroundImg: "http://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/p7kAAOxydlFTApPo/$_35.JPG"
+        },
+        {
+            name: "html5",
+            img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/html5-logo.png",
+            id: 3,
+            backgroundImg: "http://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/p7kAAOxydlFTApPo/$_35.JPG"
+        },
+        {
+            name: "jquery",
+            img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/jquery-logo.png",
+            id: 4,
+            backgroundImg: "http://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/p7kAAOxydlFTApPo/$_35.JPG"
+        }, 
+        {
+            name: "javascript",
+            img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/js-logo.png",
+            id: 5,
+            backgroundImg: "http://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/p7kAAOxydlFTApPo/$_35.JPG"
+        },
+
+        ]
+
+
+    });
+
+
+
+
+</script>
+</body>
 </html>
+
