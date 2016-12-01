@@ -58,7 +58,7 @@
 					$this.css('display', 'none')
 						 .removeClass(effect);
 
-					if (callback) callback();
+					if (options.callback) options.callback();
 				}, end);
 
 

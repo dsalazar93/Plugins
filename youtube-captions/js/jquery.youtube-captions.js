@@ -57,19 +57,6 @@
 				});
 			});
 
-			if (options.height) {
-				playlist = $this.find('.lnt-youtube-panel')
-					 .height( typeof options.height == 'number' ? options.height : playerDiv.height() )
-					 .find('.lnt-youtube-playlist')
-					 .jScrollPane({ contentWidth: '0px' });
-
-				$(window).on('resize', function(){
-					$this.find('.lnt-youtube-panel')
-						 .height( typeof options.height == 'number' ? options.height : playerDiv.height() );
-					playlist.data('jsp').reinitialise();
-				});
-			}
-
 			// Eventos necesarios para el API.
 			var _events = {
 
@@ -98,7 +85,21 @@
 				 * The API will call this function when the video player is ready.
 				 */
 				onPlayerReady: function(event) {
-					event.target.playVideo();
+					if (event.target)
+						event.target.playVideo();
+
+					if (options.height) {
+						playlist = $this.find('.lnt-youtube-panel')
+							 .height( typeof options.height == 'number' ? options.height : playerDiv.height() )
+							 .find('.lnt-youtube-playlist')
+							 .jScrollPane({ contentWidth: '0px' });
+
+						$(window).on('resize', function(){
+							$this.find('.lnt-youtube-panel')
+								 .height( typeof options.height == 'number' ? options.height : playerDiv.height() );
+							playlist.data('jsp').reinitialise();
+						});
+					}
 				},
 
 				/**

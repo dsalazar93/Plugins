@@ -40,6 +40,7 @@
 		
 		} else if (options.id) {
 			elems.content.html( $('#' + options.id).html() );
+			elems.popup.attr('id', options.id);
 
 		} else if (options.content) {
 			elems.content.html(options.content);
