@@ -5,3 +5,83 @@
 	perspective: 500px
 	max-height: 100%
 	height: 309px
+	
+	.card
+		float: left
+		width: 20%
+		height: 50%
+		padding: 5px
+		text-align: center
+		display: block
+		-webkit-perspective: 500px
+		perspective: 500px
+		position: relative
+		cursor: pointer
+		z-index: 50
+		-webkit-tap-highlight-color: transparent
+
+		.inside 
+			width: 100%
+			height: 100%
+			display: block
+			-webkit-transform-style: preserve-3d
+			transform-style: preserve-3d
+			-webkit-transition: .4s ease-in-out
+			transition: .4s ease-in-out
+			background: white
+			
+		.inside.picked, .inside.matched
+			-webkit-transform: rotateY(180deg)
+			transform: rotateY(180deg)
+			
+		.inside.matched 
+			-webkit-animation: 1s matchAnim ease-in-out
+			animation: 1s matchAnim ease-in-out
+			-webkit-animation-delay: .4s
+			animation-delay: .4s
+		
+		.front, .back
+			border: 1px solid black
+			-webkit-backface-visibility: hidden
+			backface-visibility: hidden
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			padding: 20px
+			
+		.front img, .back img
+			max-width: 100%
+			display: block
+			margin: 0 auto
+			max-height: 100%
+			
+		.front 
+			-webkit-transform: rotateY(-180deg)
+			transform: rotateY(-180deg)
+
+@-webkit-keyframes matchAnim
+	0%
+		background: #bcffcc
+	100%
+		background: white
+
+@keyframes matchAnim
+	0%
+        background: #bcffcc
+    100%
+        background: white
+
+@media (max-width: 800px)
+    .card
+        width: 25%
+        height: 16.666%
+
+@media (max-width: 800px)
+    .card .front
+        padding: 5px
+        
+@media (max-width: 800px)
+    .card .back
+        padding: 10px

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../common/css/vendors.css">
+    <link rel="stylesheet" href="../common/css/default.css">
+    <link rel="stylesheet" href="css/hangman-game.css">
+    <!-- <link rel="stylesheet" href="../popup/css/popup.css"> -->
+
+<style type="text/css">
+
+
+body {
+   background: url('http://www.writteninpencil.de/Projekte/Hangman/hangman-bg.png') fixed;
+   text-align: center;
+   font-family: Helvetica, sans-serif;
+}
+input {
+   border: 2px solid #999;
+   font-family: Helvetica, sans-serif;
+   color: #999;
+}
+
+#ratefeld {
+   font-family: 'Permanent Marker', 'cursive';
+   font-size: 2.0em;
+}
+
+h1 {
+   font-family: 'Permanent Marker', 'cursive';
+}
+</style>
+
+    
+</head>
+
+<body>
+
+<div class="hangman-game">
+
+
+   <p id="ratefeld"></p>
+
+   <form name="rateformular">
+      <p id="gerateneBuchstaben">Wrong Letters:</p>
+      <img src="img/aho0.png" style="width: 237px;" id="hangman"><br />
+      
+      <input name="ratezeichen" type="text" size="5" maxlength="1" style="text-transform: uppercase;">
+      <input name="ratebutton" type="button" value="Guess" onclick="pruefeZeichen()">
+   </form>
+
+</div>
+
+  
+<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+<script type="text/javascript" src="js/jquery.hangman-game.js"></script>
+<script type="text/javascript" src="../popup/js/jquery.popup.js"></script>
+
+<script>
+    // $('.hangman-game').hangmanGame();
+
+
+function init(){
+   print();
+
+}
+
+   var letters = [
+      ["G", "A", "T", "O"]
+   ]
+
+   var random = Math.floor((Math.random()*(letters.length-1))); 
+
+   var word = letters[random]; // the word to guess will be chosen from the array above
+   var ramdonLg = new Array(word.length);
+   var error = 0;
+
+// every letter in the word is symbolized by an underscore in the guessfield
+for (var i = 0; i < ramdonLg.length; i++){
+   ramdonLg[i] = "_ ";
+   
+}
+
+// prints the guessfield
+function prints(){
+   for (var i = 0; i < ramdonLg.length; i++){
+      var ratefeld = document.getElementById("ratefeld");
+      var buchstabe = document.createTextNode(ramdonLg[i]);
+      ratefeld.appendChild(buchstabe);
+
+   }
+}
+
+//checks if the the letter provided by the user matches one or more of the letters in the word
+pruefeZeichen = function(){
+      var f = document.rateformular; 
+      var b = f.elements["ratezeichen"]; 
+      var zeichen = b.value; // the letter provided by the user
+      zeichen = zeichen.toUpperCase();
+
+      for (var i = 0; i < word.length; i++){
+         if(word[i] === zeichen){
+            ramdonLg[i] = zeichen + " ";
+            var treffer = true;
+         }
+         b.value = "";
+         console.log("1");
+      }
+
+      //deletes the guessfield and replaces it with the new one
+      var ratefeld = document.getElementById("ratefeld");
+      ratefeld.innerHTML=""; 
+      prints();
+
+      // if a guessed letter is not in the word, the letter will be put on the "wrong letters"-list and hangman grows
+      if(!treffer){
+         var gerateneBuchstaben = document.getElementById("gerateneBuchstaben");
+         var buchstabe = document.createTextNode(" " + zeichen);
+         gerateneBuchstaben.appendChild(buchstabe); 
+         error++;
+         var hangman = document.getElementById("hangman");
+         hangman.src = "img/aho" + error + ".png";
+      }
+
+      //checks if all letters have been found
+      var win = true;
+      for (var i = 0; i < ramdonLg.length; i++){
+         if(ramdonLg[i] === "_ "){
+            win = false;
+         }
+      }
+
+      if(win){
+         window.alert("You win!");
+      }
+
+      //once you got six wrong letters, you lose
+      if(error === 6){
+         window.alert("Uh...I guess you're dead now.");
+      }
+
+}
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
