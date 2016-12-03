@@ -148,6 +148,10 @@
 					 } else {
 					 	clearInterval(timeUpdater);					 	
 					 }
+
+					 if (event.data == YT.PlayerState.ENDED) {
+					 	if (options.onended) options.onended();
+					 }
 				}
 			}
 

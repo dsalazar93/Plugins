@@ -4,10 +4,11 @@
     $.fn.memoryGame = function(opts) {
     	var defaults = {
     		backgroundImg: "img/bg.jpg",
-    		cards: []
+    		cards: [],
     	};
 
         var options = $.extend({}, defaults, opts);
+        if (!options.mirrors) options.mirrors = options.cards;
 
         return this.each(function() {
 
@@ -19,9 +20,13 @@
         	options.cards.forEach(function(elem, idx) {
         		elem.id = idx;
         	});
+
+            options.mirrors.forEach(function(elem, idx) {
+                elem.id = idx;
+            });
         		
         	$.merge(cardsArray, options.cards);
-        	$.merge(cardsArray, options.cards);        		
+        	$.merge(cardsArray, options.mirrors);        		
 
         	var _events = {
 
@@ -75,7 +80,7 @@
 
                         if ($this.find(".matched").length == $this.find(".card").length) {
                         	paused = true;
-                            if (options.win) options.win();
+                            if (options.onwin) options.onwin();
                         }
                     }
                 },

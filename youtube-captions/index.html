@@ -46,7 +46,13 @@
 			onLoad: function(elems) {
 				elems.content.css('padding', '0')
 							 .find('.lnt-youtube-captions')
-							 .youtubeCaptions({ height: 'auto' });
+							 .youtubeCaptions(
+							 	{ 
+							 		height: 'auto',
+							 		onended: function() {
+							 			alert('Sip');
+							 		}
+							 	});
 			} 
 		});
 	</script>
