@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../common/css/vendors.css">
+		<link rel="stylesheet" href="../common/css/default.css">
+		<link rel="stylesheet" href="css/quiz.css">
+		<style>
+			body {
+				font-family: 'Quicksand';
+			}
+		</style>
+	</head>
+	<body>
+		
+		<form id="evaluation"></form>
+
+		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="js/jquery.quiz.js"></script>
+
+		<script>
+			$('#evaluation').quiz({
+				title: 'Evaluación del curso<div>Modelo de posicionamiento de marca</div>',
+				questions:[
+					{
+						question: '<span class="ask">¿</span>Qué relación tiene una cosa con la otra, cuando la otra no tiene relación la otra que no es de ninguna?',
+						answers: [
+							{ text: 'Ninguna de la anteriores' },
+							{ text: 'La relación en sí', correct: true },
+							{ text: 'Todas del mismo sentido y contrario' },
+							{ text: 'Todas del mismo sentido y contrario' }
+						],
+						feedback: {
+							good: '<h3>Muy bien!!</h3><div>Este es el feedback realizado por alguien en ralación a la relación que tiene esa cosa con si misma y con el universo. Para profundizar mira el siguiente enlace</div>',
+
+							bad: '<h3>Incorrecto!!</h3><div>No has podido con está para eso tienes este feedback realizado por alguien en ralación a la relación que tiene esa cosa con si misma y con el universo. Para profundizar mira el siguiente enlace</div>'
+						}
+					},
+					{
+						question: '<span class="ask">¿</span>Qué relación tiene una cosa con la otra, cuando la otra no tiene relación la otra que no es de ninguna?',
+						answers: [
+							{ text: 'Ninguna de la anteriores' },
+							{ text: 'La relación en sí', correct: true },
+							{ text: 'Todas del mismo sentido y contrario' },
+							{ text: 'Todas del mismo sentido y contrario' }
+						],
+						feedback: {
+							good: '<h3>Muy bien!!</h3><div>Este es el feedback realizado por alguien en ralación a la relación que tiene esa cosa con si misma y con el universo. Para profundizar mira el siguiente enlace</div>',
+
+							bad: '<h3>Incorrecto!!</h3><div>No has podido con está para eso tienes este feedback realizado por alguien en ralación a la relación que tiene esa cosa con si misma y con el universo. Para profundizar mira el siguiente enlace</div>'
+						}
+					}
+				]
+			})
+		</script>
+	</body>
+</html>

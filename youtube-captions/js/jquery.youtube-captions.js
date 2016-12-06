@@ -19,7 +19,8 @@
 
 		var defaults = {
 			width: '100%',
-			autoplay: 0
+			autoplay: 1,
+			fs: 1
 		}
 
 		var options = $.extend({}, defaults, opts);
@@ -69,7 +70,8 @@
 							playerVars: {
 								showinfo: 0,
 								rel: 0,
-								autoplay: options.autoplay
+								autoplay: options.autoplay,
+								fs: options.fs
 							},
 							events: {
 								'onReady': _events.onPlayerReady,
@@ -85,7 +87,7 @@
 				 * The API will call this function when the video player is ready.
 				 */
 				onPlayerReady: function(event) {
-					if (event.target)
+					if (event.target && options.autoplay)
 						event.target.playVideo();
 
 					if (options.height) {
