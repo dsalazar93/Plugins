@@ -18,6 +18,7 @@
 		<div class="lnt-youtube-captions lnt-youtube-inline" data-id="w7MnUvPiPLA">
 			<div class="lnt-youtube-panel">
 				<h1>Titulo</h1>
+				<button id="pause">Pausar</button>
 				<div class="lnt-youtube-playlist">
 					<ul>
 						<li data-time="1"><span class="icon-play"></span>Modelo de posicionamiento de marca</li>
@@ -44,17 +45,21 @@
 			id: 'youtube-captions',
 			width: 1200,
 			onLoad: function(elems) {
-				elems.content.css('padding', '0')
+				var video = elems.content.css('padding', '0')
 							 .find('.lnt-youtube-captions')
 							 .youtubeCaptions(
 							 	{ 
 							 		height: 'auto',
 							 		fs: 0,
-							 		autoplay: 0,
+							 		autoplay: 1,
 							 		onended: function() {
 							 			alert('Sip');
 							 		}
 							 	});
+
+				elems.content.find('button').on('click', function(){
+					video.data('yt').pause();
+				});
 			} 
 		});
 	</script>

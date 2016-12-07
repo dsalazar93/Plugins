@@ -32,7 +32,8 @@
 				,videoTime = 0
 				,timeUpdater		
 				,playerID = 'player-' + window.playersCount++
-				,captions = $this.find('li');
+				,captions = $this.find('li')
+				,paused = false;
 
 			if ( $this.hasClass('player-instanced') ) {
 				$this.data('yt').play();
@@ -42,8 +43,8 @@
 			$this.addClass('player-instanced')
 				 .css('width', options.width)
 				 .data('yt',{
-				 				play: function() { if(player.playVideo) player.playVideo(); },
-				 				pause: function() {  if(player.pauseVideo) player.pauseVideo(); },
+				 				play: function() { if(player.playVideo) player.playVideo(); paused = false; },
+				 				pause: function() {  if(player.pauseVideo) player.pauseVideo(); paused = true; },
 				 				stop: function() { if(player.stopVideo) plater.stopVideo(); }
 				 			});
 			
@@ -89,6 +90,9 @@
 				onPlayerReady: function(event) {
 					if (event.target && options.autoplay)
 						event.target.playVideo();
+
+					if (paused)
+						event.target.pauseVideo();
 
 					if (options.height) {
 						playlist = $this.find('.lnt-youtube-panel')
