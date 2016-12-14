@@ -72,7 +72,8 @@
 								showinfo: 0,
 								rel: 0,
 								autoplay: options.autoplay,
-								fs: options.fs
+								fs: options.fs,
+								iv_load_policy: 0
 							},
 							events: {
 								'onReady': _events.onPlayerReady,
