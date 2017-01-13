@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="lnt_relatewords_container"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="lnt_relatewords_container2"></div>
     
     <script type="text/javascript" src="../common/js/vendors.min.js"></script>
     <script type="text/javascript" src="js/jquery.relatewords.js"></script>
@@ -23,12 +28,17 @@
                 {wordOne : 'negro',  wordTwo : 'black',  wordKey : 5},
                 {wordOne : 'blanco', wordTwo : 'white',  wordKey : 6},
                 {wordOne : 'morado', wordTwo : 'purple', wordKey : 7},
-                {wordOne : 'cafe',   wordTwo : 'brown',  wordKey : 8},
+                {wordOne : 'cafe',   wordTwo : 'brown',  wordKey : 8}
             ]
+        });
 
-
-            // word : 'innovación',
-            // question : 'Cambio que introduce novedades',
+        $(".lnt_relatewords_container2").relateWords({
+            groups : [
+                {wordOne : 'Medellín',   wordTwo : 'Antioquia',    wordKey : 1},
+                {wordOne : 'Bogotá',   wordTwo : 'Cundinamarca',   wordKey : 2},
+                {wordOne : 'Cali',  wordTwo : 'Valle del Cauca',  wordKey : 3},
+                {wordOne : 'Cartagena',   wordTwo : 'Bolivar',   wordKey : 4}
+            ]
         });
     </script>
 </body>

@@ -8,9 +8,11 @@
 
         return this.each(function() {            
             var container = $(this);
+            var wordClass = "cont_" + $(this).attr('class');
+            var wordBtnClass =  "button_" + $(this).attr('class');
             var spaceWords = ""+
                 "<div class='row'>"+
-                    "<div class='col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 lnt_relateword_box_border lnt_relateword_boxRow'>"+
+                    "<div class='"+wordClass+" col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 lnt_relateword_box_border lnt_relateword_boxRow "+wordClass+"'>"+
                     "</div>"+
                 "</div>"; 
 
@@ -40,26 +42,27 @@
                 var textToHtml = ""+ 
                     "<div class='col-xs-4 col-sm-4 col-md-4'>"+
                         "<center>"+
-                            "<button type='button' class='btn btn-default btn-lg lnt_relateword_button'>"+wordFullArray[i]+"</button>"+
+                            "<button type='button' class='"+wordBtnClass+" btn btn-default btn-lg lnt_relateword_button'>"+wordFullArray[i]+"</button>"+
                         "</center>"+
                     "</div>";
-
-                $(".lnt_relateword_boxRow").append(textToHtml);
+                var objectWord = $("."+wordClass+"");
+                objectWord.append(textToHtml);
             }
 
-            var wordBtn = $('.lnt_relateword_button');
+            var wordBtn = $('.'+wordBtnClass+'');
             var elementsClicked = 0;
             var wordSelected = [];
             var wordSavePos = [];
             wordBtn.on('click', function() {
                 var $this = $(this);
                 var twoWords = 0;
-                if (elementsClicked < 2) 
+                if (elementsClicked < 2 && !($($this).hasClass('btn-warning')))
                 {
                     $this.addClass('btn-warning').removeClass('btn-default');
                     wordSelected.push($this.text());
+                    elementsClicked++;
                 }              
-                elementsClicked++;
+                
                 if (elementsClicked == 2) 
                 {
                     console.log(wordSelected);
@@ -78,7 +81,7 @@
                     }
                     if (wordSavePos[0] == wordSavePos[1]) 
                     {
-                        $(".lnt_relateword_button").each(function(index, el) {
+                        $("."+wordBtnClass+"").each(function(index, el) {
                             if ($(el).hasClass('btn-warning')) 
                             {
                                 $(el).removeClass('btn-warning').addClass('btn-success disabled animated zoomIn');
@@ -92,7 +95,7 @@
                     else
                     {
                         setTimeout(function(){
-                            $(".lnt_relateword_button").each(function(index, el) {
+                            $("."+wordBtnClass+"").each(function(index, el) {
                                 if ($(el).hasClass('btn-warning')) 
                                 {
                                     $(el).removeClass('btn-warning').addClass('btn-default animated shake');
