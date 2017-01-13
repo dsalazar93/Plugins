@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../common/css/vendors.css">
+    <link rel="stylesheet" href="../common/css/default.css">
+    <link rel="stylesheet" href="css/relatewords.css">
+</head>
+<body>
+    <div class="lnt_relatewords_container"></div>
+    
+    <script type="text/javascript" src="../common/js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/jquery.relatewords.js"></script>
+
+    <script>
+        $(".lnt_relatewords_container").relateWords({
+            groups : [
+                {wordOne : 'rojo',   wordTwo : 'red',    wordKey : 1},
+                {wordOne : 'azul',   wordTwo : 'blue',   wordKey : 2},
+                {wordOne : 'verde',  wordTwo : 'green',  wordKey : 3},
+                {wordOne : 'gris',   wordTwo : 'gray',   wordKey : 4},
+                {wordOne : 'negro',  wordTwo : 'black',  wordKey : 5},
+                {wordOne : 'blanco', wordTwo : 'white',  wordKey : 6},
+                {wordOne : 'morado', wordTwo : 'purple', wordKey : 7},
+                {wordOne : 'cafe',   wordTwo : 'brown',  wordKey : 8},
+            ]
+
+
+            // word : 'innovación',
+            // question : 'Cambio que introduce novedades',
+        });
+    </script>
+</body>
+</html>
