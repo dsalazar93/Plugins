@@ -24,6 +24,8 @@
             });
             console.log(wordOneArray);
             console.log(wordTwoArray);
+            var lengthObject = Object.keys(options.groups).length;
+            console.log(lengthObject);
 
             container.append(spaceWords);
 
@@ -61,7 +63,12 @@
                     $this.addClass('btn-warning').removeClass('btn-default');
                     wordSelected.push($this.text());
                     elementsClicked++;
-                }              
+                }
+                else if ($($this).hasClass('btn-warning')) 
+                {
+                    $this.addClass('btn-default').removeClass('btn-warning');
+                    elementsClicked--;
+                }         
                 
                 if (elementsClicked == 2) 
                 {
