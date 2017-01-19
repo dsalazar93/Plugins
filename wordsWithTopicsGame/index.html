@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../common/css/vendors.css">
+    <link rel="stylesheet" href="../common/css/default.css">
+    <link rel="stylesheet" href="css/wordwithtopics.css">
+</head>
+<body>
+    <div class="lnt_wordswithtopics_container"></div>
+    <br>
+    <br>
+    <div class="lnt_wordswithtopics_container2"></div>
+    <br>
+    <br><!-- 
+    <div class="lnt_wordswithtopics_container3"></div> -->
+    
+    <script type="text/javascript" src="../common/js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/jquery.wordswithtopics.js"></script>
+
+    <script>
+        $(".lnt_wordswithtopics_container").wordswithtopics({
+            groups : [
+                {
+                    wordOne : 'moto1',   
+                    wordTwo : 'moto2',  
+                    wordThree : 'moto3', 
+                    wordFour : 'moto4', 
+                    wordFive : 'moto5', 
+                    wordSix : 'moto6'
+                },
+                {
+                    wordOne : 'carro1',   
+                    wordTwo : 'carro2',   
+                    wordThree : 'carro3', 
+                    wordFour : 'carro4', 
+                    wordFive : 'carro5', 
+                    wordSix : 'carro6'
+                },
+                {
+                    wordOne : 'barco1',  
+                    wordTwo : 'barco2',  
+                    wordThree : 'barco3', 
+                    wordFour : 'barco4', 
+                    wordFive : 'barco5', 
+                    wordSix : 'barco6'
+                }
+            ],
+            topics : [
+                {topic : "Motos"},
+                {topic : "Carros"},
+                {topic : "Barcos"}
+            ]
+        });
+
+        // $(".lnt_wordswithtopics_container2").wordswithtopics({
+        //     groups : [
+        //         {
+        //             wordOne : 'moto1',   
+        //             wordTwo : 'moto2',  
+        //             wordThree : 'mototres', 
+        //             wordFour : 'motocuatro', 
+        //             wordFive : 'motocinco', 
+        //             wordSix : 'motoseis'
+        //         },
+        //         {
+        //             wordOne : 'carro1',   
+        //             wordTwo : 'carro2',   
+        //             wordThree : 'carro3', 
+        //             wordFour : 'carro4', 
+        //             wordFive : 'carro5', 
+        //             wordSix : 'carro6'
+        //         },
+        //         {
+        //             wordOne : 'barco1',  
+        //             wordTwo : 'barco2',  
+        //             wordThree : 'barco3', 
+        //             wordFour : 'barco4', 
+        //             wordFive : 'barco5', 
+        //             wordSix : 'barco6'
+        //         }
+        //     ]
+        // });
+    </script>
+</body>
+</html>
