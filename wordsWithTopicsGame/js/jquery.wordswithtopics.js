@@ -51,6 +51,11 @@
                 wordFullArray.push(wordArray5[i]);
                 wordFullArray.push(wordArray6[i]);                
             }
+
+            for (var i = 0; i < options.randomWords.length; i++) {
+                wordFullArray.push(options.randomWords[i]);
+            }
+
             wordFullArray = ShuffleArray(wordFullArray);
             console.log(wordFullArray);
 
@@ -118,7 +123,27 @@
                         } 
                     }
 
-                    var wordsSelectedEqual = wordSavePos.allValuesSame();
+                    if (wordSavePos.length == wordsByGroup)
+                    {
+                        var wordsSelectedEqual = wordSavePos.allValuesSame();
+                    }
+                    else
+                    {
+                        console.log("No");
+                        setTimeout(function(){
+                            $("."+wordBtnClass+"").each(function(index, el) {
+                                if ($(el).hasClass('btn-warning')) 
+                                {
+                                    $(el).removeClass('btn-warning').addClass('btn-default animated shake');
+                                }
+                                setTimeout(function(){$(el).removeClass('animated shake')}, 300);
+                            });
+                        }, 300);
+                        elementsClicked = 0;
+                        wordSavePos = [];
+                        wordSelected = [];
+                    }
+
 
                     if (wordsSelectedEqual) 
                     {
@@ -133,6 +158,7 @@
                         elementsClicked = 0;
                         wordSavePos = [];
                         wordSelected = [];
+                        $('.pop-good').trigger('click');
                     }
                     else
                     {

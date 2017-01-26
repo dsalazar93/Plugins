@@ -6,20 +6,51 @@
     <link rel="stylesheet" href="../common/css/vendors.css">
     <link rel="stylesheet" href="../common/css/default.css">
     <link rel="stylesheet" href="css/wordwithtopics.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .modalbefore {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="lnt_wordswithtopics_container"></div>
-    <br>
-    <br>
-    <div class="lnt_wordswithtopics_container2"></div>
-    <br>
-    <br><!-- 
-    <div class="lnt_wordswithtopics_container3"></div> -->
+    <div class="pop-good" data-toggle="modal" data-target="#pop-good"></div>
+    <div class="modal animated zoomIn" id="pop-good" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header label-good white">
+                    <div class="col-xs-11" style="padding-top: 10px;">
+                        <h4 class="modal-title t-good"> JUEGO TERMINADO</h4>
+                    </div>
+                    <div class="col-xs-1" style="background: rgb(91, 130, 53);padding: 10px;">
+                        <button type="button" class="close" data-dismiss="modal" onclick="cerrarpop();">&#8855;</button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="txt-good">¡HAS GANADO!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <script type="text/javascript" src="../common/js/vendors.min.js"></script>
     <script type="text/javascript" src="js/jquery.wordswithtopics.js"></script>
 
     <script>
+        var randomWords = ['frijoles', 'mondongo', 'sancocho', 'ajiaco', 'sopa', 'arroz'];
         $(".lnt_wordswithtopics_container").wordswithtopics({
             groups : [
                 {
@@ -29,59 +60,10 @@
                     wordFour : 'moto4', 
                     wordFive : 'moto5', 
                     wordSix : 'moto6'
-                },
-                {
-                    wordOne : 'carro1',   
-                    wordTwo : 'carro2',   
-                    wordThree : 'carro3', 
-                    wordFour : 'carro4', 
-                    wordFive : 'carro5', 
-                    wordSix : 'carro6'
-                },
-                {
-                    wordOne : 'barco1',  
-                    wordTwo : 'barco2',  
-                    wordThree : 'barco3', 
-                    wordFour : 'barco4', 
-                    wordFive : 'barco5', 
-                    wordSix : 'barco6'
                 }
             ],
-            topics : [
-                {topic : "Motos"},
-                {topic : "Carros"},
-                {topic : "Barcos"}
-            ]
+            randomWords
         });
-
-        // $(".lnt_wordswithtopics_container2").wordswithtopics({
-        //     groups : [
-        //         {
-        //             wordOne : 'moto1',   
-        //             wordTwo : 'moto2',  
-        //             wordThree : 'mototres', 
-        //             wordFour : 'motocuatro', 
-        //             wordFive : 'motocinco', 
-        //             wordSix : 'motoseis'
-        //         },
-        //         {
-        //             wordOne : 'carro1',   
-        //             wordTwo : 'carro2',   
-        //             wordThree : 'carro3', 
-        //             wordFour : 'carro4', 
-        //             wordFive : 'carro5', 
-        //             wordSix : 'carro6'
-        //         },
-        //         {
-        //             wordOne : 'barco1',  
-        //             wordTwo : 'barco2',  
-        //             wordThree : 'barco3', 
-        //             wordFour : 'barco4', 
-        //             wordFive : 'barco5', 
-        //             wordSix : 'barco6'
-        //         }
-        //     ]
-        // });
     </script>
 </body>
 </html>
