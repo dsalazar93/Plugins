@@ -9,8 +9,7 @@ module.exports = function(grunt) {
 				src: [
 					  'node_modules/jquery/dist/jquery.min.js',
 					  'node_modules/jquery-ui/dist/jquery-ui.js',
-					  'node_modules/jScrollPane/script/jquery.mousewheel.js',
-					  'node_modules/jScrollPane/script/jquery.jscrollpane.min.js',
+					  'node_modules/bootstrap/dist/js/bootstrap.min.js',
 					 ],
 				dest: 'common/js/vendors.min.js'
 			}
@@ -31,9 +30,6 @@ module.exports = function(grunt) {
 					'common/css/vendors.css': 	[
 						"common/css/fonts.css",
 						"node_modules/bootstrap/dist/css/bootstrap.css",
-						"node_modules/jquery-ui/dist/jquery-ui.css",
-						"node_modules/jScrollPane/style/jquery.jscrollpane.css",
-						"node_modules/animate.css/animate.min.css"
 					]
 				}
 			}
