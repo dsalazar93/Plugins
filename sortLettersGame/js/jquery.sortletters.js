@@ -10,10 +10,12 @@
 
         return this.each(function() {
             var elemento = $(this);
-            options.enunciate.forEach(function(seccion, pos){
+            options.enunciate.forEach(function(seccion, pos)
+            {
                 // console.log(seccion);
 
-                var esquema = "<div class='lnt_section_word'>"+
+                var esquema = ""+
+                    "<div class='lnt_section_word lnt_section"+pos+"'>"+
                         "<h2>"+seccion.phrase+"</h2>"+
                         "<div class='boxButtons boxButtons"+pos+"'></div>"+
                         "<div class='boxLetters boxLetters"+pos+"'></div>"+
@@ -67,6 +69,11 @@
                     $('.boxLetters'+pos).append(letterToFill);
                 }
 
+                if (pos == 0) 
+                {
+                    $('.lnt_section'+pos).css('display', 'block');
+                }
+
                 var elementosclicked = 0;
                 var btn = $('.lnt_word_button'+pos);
                 btn.on('click', function(){
@@ -111,6 +118,14 @@
 
                         if (right == checked) {
                             alert('Good Job!');
+
+                            $('.lnt_section'+pos).css('display', 'none');
+                            $('.lnt_section'+(pos+1)).css('display', 'block');
+                            if ( !(pos < (options.enunciate.length - 1) ) ) 
+                            {
+                                alert("Listo mijo valla cómase los frijolitos porque hizo la tarea");
+                            }
+
                         } else {
                             alert('You failed!');
                         }
@@ -118,6 +133,8 @@
                 });
 
             });
+
+    
 
 
             
