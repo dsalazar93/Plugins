@@ -6,7 +6,8 @@
     	var defaults = {};
         var options = $.extend({}, defaults, opts);
 
-        return this.each(function() {            
+        return this.each(function() { 
+            var juegoOk = 0;           
             var container = $(this);
             var wordClass = "cont_" + $(this).attr('class');
             var wordBtnClass =  "button_" + $(this).attr('class');
@@ -93,11 +94,13 @@
                             {
                                 $(el).removeClass('btn-warning').addClass('btn-success disabled animated zoomIn');
                                 $(el).prop('disabled', true);
+                                
                             }
                         });
                         elementsClicked = 0;
                         wordSavePos = [];
                         wordSelected = [];
+                        juegoOk++;
                     }
                     else
                     {
@@ -114,6 +117,11 @@
                         wordSavePos = [];
                         wordSelected = [];
                     }                   
+                }
+
+                if (juegoOk == options.groups.length)
+                {
+                    alert('Ya termino cucho, se puede comprar una gasesosa');
                 }
             });
 

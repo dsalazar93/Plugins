@@ -30,6 +30,7 @@ module.exports = function(grunt) {
 					'common/css/vendors.css': 	[
 						"common/css/fonts.css",
 						"node_modules/bootstrap/dist/css/bootstrap.css",
+						"node_modules/animate.css/animate.min.css",
 					]
 				}
 			}
