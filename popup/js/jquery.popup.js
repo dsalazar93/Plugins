@@ -32,9 +32,18 @@
 		}).css('width', options.width);
 
 		if (options.youtubeID) {
+			if (options.titulo){
+				elems.title = $('<div>', {Class: 'coo-title-video'}).appendTo(elems.popup);
+				elems.title.html(options.titulo);
+			}
 			elems.content.css('padding', 0);
 			elems.video = $('<div>', {Class: 'lnt-video'}).appendTo(elems.content);
-			var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0';
+			if ($.isNumeric(options.youtubeID))
+			{
+				var src = 'https://player.vimeo.com/video/'+ options.youtubeID + '?autoplay=1&title=0&byline=0&portrait=0'
+			} else {
+				var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0';				
+			}
 			var iframe = $('<iframe>', {width: '100%', height: '100%', src: src, allowfullscreen: true})
 								.appendTo(elems.video);
 		
