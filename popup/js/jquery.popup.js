@@ -33,8 +33,12 @@
 
 		if (options.youtubeID) {
 			if (options.titulo){
-				elems.title = $('<div>', {Class: 'coo-title-video'}).appendTo(elems.popup);
+				elems.title = $('<div>', {Class: 'coo-title-video'}).appendTo(elems.wrapper);
 				elems.title.html(options.titulo);
+			}
+			if (options.texto){
+				elems.texto = $('<div>', {Class: 'coo-text-video'}).appendTo(elems.wrapper);
+				elems.texto.html(options.texto);
 			}
 			elems.content.css('padding', 0);
 			elems.video = $('<div>', {Class: 'lnt-video'}).appendTo(elems.content);
