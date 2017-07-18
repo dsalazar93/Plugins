@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 			vendors: {
 				src: [
 					  'node_modules/jquery/dist/jquery.min.js',
-					  'node_modules/jquery-ui/dist/jquery-ui.js',
+					  'node_modules/jquery-ui-dist/jquery-ui.min.js',
 					  'node_modules/bootstrap/dist/js/bootstrap.min.js',
 					 ],
 				dest: 'common/js/vendors.min.js'

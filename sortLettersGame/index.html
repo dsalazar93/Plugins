@@ -9,8 +9,6 @@
 </head>
 <body>
     <div class="letters-grid"></div>
-    <div class="letters-grid2"></div>
-    <div class="letters-grid3"></div>
     
     <script type="text/javascript" src="../common/js/vendors.min.js"></script>
     <script type="text/javascript" src="js/jquery.sortletters.js"></script>
@@ -21,7 +19,25 @@
                 {phrase : 'Departamento con mas montañas en colombia', word : 'Antioquia'},
                 {phrase : 'Lenguaje frotend de la web', word : 'Javascript'},
                 {phrase : 'Casa en ingles', word : 'House'}
-            ]
+            ],
+            onClickItemBefore: function() {
+                console.log("Click Item Before!!");
+            },
+            onClickItemAfter: function() {
+                console.log("Click Item After!!");
+            },
+            onClickCheck: function() {
+                console.log("Click Item Check");
+            },
+            onCorrect: function() {
+                console.log("Is Correct!!");
+            },
+            onFailed: function() {
+                console.log("Failed!!");
+            },
+            onTerminated: function() {
+                console.log("Terminadted!!");
+            }
         });
     </script>
 </body>

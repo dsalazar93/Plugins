@@ -2,63 +2,64 @@
 	"use strict";
 
     $.fn.sortLetters = function(opts) {
-    	var defaults = {};
+    	
+        var defaults = {
+            onClickItemBefore: function(){},
+            onClickItemAfter: function(){},
+            onClickCheck: function(){},
+            onCorrect: function(){},
+            onFailed: function(){},
+            onTerminated: function(){}
+        };
 
         var options = $.extend({}, defaults, opts);
 
-        // var wordSections = options.enunciate;
-
         return this.each(function() {
-            var elemento = $(this);
-            options.enunciate.forEach(function(seccion, pos)
-            {
-                // console.log(seccion);
 
-                var esquema = ""+
+            var $this = $(this);
+
+            options.enunciate.forEach(function(section, pos) {
+
+                var template = ""+
                     "<div class='lnt_section_word lnt_section"+pos+"'>"+
-                        "<h2>"+seccion.phrase+"</h2>"+
+                        "<h2>"+section.phrase+"</h2>"+
                         "<div class='boxButtons boxButtons"+pos+"'></div>"+
                         "<div class='boxLetters boxLetters"+pos+"'></div>"+
-                        "<center>"+
-                            "<button type='button' id='lnt_check"+pos+"' class='btn-success btn-lg'>Comprobar</button>"+
-                        "</center><br><br><br><br>"+
+                        "<button type='button' id='lnt_check"+pos+"' class='btn-success btn-lg'>Comprobar</button>"+
                     "</div>";
-                elemento.prepend(esquema);
+
+                $this.prepend(template);
 
                 // * Se guarda la palabra en en la variable (fullWord) 
                 //   para operar sobre esta.
 
                 // * splitWord es un array donde se guarda cada letra de la palabra.
 
-                var fullWord = seccion.word;
+                var fullWord = section.word;
                 var arrarWord = [];
                 var splitWord = [];
 
                 // El ciclo divide la palabra en letras y las guarda en el array splitWord.
-                for (var i = 0; i < fullWord.length; i++) 
-                {
+                for (var i = 0; i < fullWord.length; i++) {
                     splitWord.push(fullWord[i]);
                     arrarWord.push(fullWord[i]);
                 }
-                console.log(splitWord);
-
 
                 // A continuación se desordena el array (splitWord) para luego
                 // imprimir en el html.
                 var currentIndex = splitWord.length, temporaryValue, randomIndex;
-                //Mientras haya elementos, barajar...
-                while (0 !== currentIndex) 
-                {
+                
+                //Mientras haya $this, barajar...
+                while (0 !== currentIndex) {
                     // Escoger una pocisión del array...
                     randomIndex = Math.floor(Math.random() * currentIndex);
                     currentIndex -= 1;
 
-                    // Intercambiar con el elemento actual.
+                    // Intercambiar con el $this actual.
                     temporaryValue = splitWord[currentIndex];
                     splitWord[currentIndex] = splitWord[randomIndex];
                     splitWord[randomIndex] = temporaryValue;
                 }
-                console.log(splitWord);            
 
                 var openButton = "<button type='button' class='btn-primary lnt_word_button lnt_word_button"+pos+"'>";
                 var closeButton = "</button>";
@@ -69,39 +70,36 @@
                     $('.boxLetters'+pos).append(letterToFill);
                 }
 
-                if (pos == 0) 
-                {
+                if (pos == 0)
                     $('.lnt_section'+pos).css('display', 'block');
-                }
 
-                var elementosclicked = 0;
+                var $thissclicked = 0;
                 var btn = $('.lnt_word_button'+pos);
-                btn.on('click', function(){
+
+                btn.on('click', function() {
                     var $this = $(this);
-                    if ($this.parent(".boxButtons"+pos) && !($this.hasClass('lnt_word_button_r'+pos))) 
-                    {
-                        console.log("Caja de botones");
-                        var primero = $('.lnt_lettertofill'+pos).first();
+
+                    if ($this.parent(".boxButtons"+pos) && !($this.hasClass('lnt_word_button_r'+pos))) {
+                        var first = $('.lnt_lettertofill'+pos).first();
                         $this.addClass('lnt_word_button_r'+pos);
-                        primero.replaceWith($this);
-                        elementosclicked++;
-                    }
-                    else if ($this.parent(".boxLetters") && $this.hasClass('lnt_word_button_r'+pos))
-                    {
-                        console.log("caja de letras");
+                        first.replaceWith($this);
+                        $thissclicked++;
+                        options.onClickItemBefore()
+                    
+                    } else if ($this.parent(".boxLetters") && $this.hasClass('lnt_word_button_r'+pos)) {
                         var regresaraCaja = $('.boxButtons'+pos);
                         $this.removeClass('lnt_word_button_r'+pos)
                         regresaraCaja.append($this);
                         $(".boxLetters"+pos).append(letterToFill);
-                        elementosclicked--;
+                        $thissclicked--;
+                        options.onClickItemAfter()
                     }
                 });
 
 
                 $('#lnt_check'+pos).on('click', function() {
-
-                    if (elementosclicked == arrarWord.length) 
-                    {
+                    options.onClickCheck()
+                    if ($thissclicked == arrarWord.length) {
                         var checked = 0;
                         var right = 0;
                         var text = '';
@@ -117,29 +115,22 @@
                         });
 
                         if (right == checked) {
-                            alert('Good Job!');
+                            options.onCorrect();
+
+                            if ( pos >= (options.enunciate.length - 1) ) {
+                                options.onTerminated();
+                                return;
+                            }
 
                             $('.lnt_section'+pos).css('display', 'none');
                             $('.lnt_section'+(pos+1)).css('display', 'block');
-                            if ( !(pos < (options.enunciate.length - 1) ) ) 
-                            {
-                                alert("Listo mijo valla cómase los frijolitos porque hizo la tarea");
-                            }
 
                         } else {
-                            alert('You failed!');
+                            options.onFailed();                            
                         }
                     }
                 });
-
             });
-
-    
-
-
-            
-
         });
     }
-
 })(jQuery, window);
