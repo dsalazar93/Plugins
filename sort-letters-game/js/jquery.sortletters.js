@@ -21,11 +21,11 @@
             options.enunciate.forEach(function(section, pos) {
 
                 var template = ""+
-                    "<div class='lnt_section_word lnt_section"+pos+"'>"+
+                    "<div class='lnt-section-word lnt-section"+pos+"'>"+
                         "<h2>"+section.phrase+"</h2>"+
                         "<div class='boxButtons boxButtons"+pos+"'></div>"+
                         "<div class='boxLetters boxLetters"+pos+"'></div>"+
-                        "<button type='button' id='lnt_check"+pos+"' class='btn-success btn-lg'>Comprobar</button>"+
+                        "<button type='button' id='lnt-check"+pos+"' class='btn-success btn-lg'>Comprobar</button>"+
                     "</div>";
 
                 $this.prepend(template);
@@ -61,9 +61,9 @@
                     splitWord[randomIndex] = temporaryValue;
                 }
 
-                var openButton = "<button type='button' class='btn-primary lnt_word_button lnt_word_button"+pos+"'>";
+                var openButton = "<button type='button' class='btn-primary lnt-word-button lnt-word-button"+pos+"'>";
                 var closeButton = "</button>";
-                var letterToFill = "<div class='lnt_lettertofill lnt_lettertofill"+pos+"'></div>";
+                var letterToFill = "<div class='lnt-lettertofill lnt-lettertofill"+pos+"'></div>";
 
                 for (var i = 0; i < splitWord.length; i++) {
                     $('.boxButtons'+pos).append(openButton + splitWord[i] + closeButton);
@@ -71,24 +71,24 @@
                 }
 
                 if (pos == 0)
-                    $('.lnt_section'+pos).css('display', 'block');
+                    $('.lnt-section'+pos).css('display', 'block');
 
                 var $thissclicked = 0;
-                var btn = $('.lnt_word_button'+pos);
+                var btn = $('.lnt-word-button'+pos);
 
                 btn.on('click', function() {
                     var $this = $(this);
 
-                    if ($this.parent(".boxButtons"+pos) && !($this.hasClass('lnt_word_button_r'+pos))) {
-                        var first = $('.lnt_lettertofill'+pos).first();
-                        $this.addClass('lnt_word_button_r'+pos);
+                    if ($this.parent(".boxButtons"+pos) && !($this.hasClass('lnt-word-button-r'+pos))) {
+                        var first = $('.lnt-lettertofill'+pos).first();
+                        $this.addClass('lnt-word-button-r'+pos);
                         first.replaceWith($this);
                         $thissclicked++;
                         options.onClickItemBefore()
                     
-                    } else if ($this.parent(".boxLetters") && $this.hasClass('lnt_word_button_r'+pos)) {
+                    } else if ($this.parent(".boxLetters") && $this.hasClass('lnt-word-button-r'+pos)) {
                         var regresaraCaja = $('.boxButtons'+pos);
-                        $this.removeClass('lnt_word_button_r'+pos)
+                        $this.removeClass('lnt-word-button-r'+pos)
                         regresaraCaja.append($this);
                         $(".boxLetters"+pos).append(letterToFill);
                         $thissclicked--;
@@ -97,7 +97,7 @@
                 });
 
 
-                $('#lnt_check'+pos).on('click', function() {
+                $('#lnt-check'+pos).on('click', function() {
                     options.onClickCheck()
                     if ($thissclicked == arrarWord.length) {
                         var checked = 0;
@@ -105,7 +105,7 @@
                         var text = '';
 
                         // Recorremos cada span del texto para compararlo con su valor.
-                        $(".lnt_word_button_r"+pos).each(function() {
+                        $(".lnt-word-button-r"+pos).each(function() {
                             // Si la palabra es correcta, sumamos 1 a right.
                             if ($(this).text() == arrarWord[checked]) {
                                 right += 1;
@@ -122,8 +122,8 @@
                                 return;
                             }
 
-                            $('.lnt_section'+pos).css('display', 'none');
-                            $('.lnt_section'+(pos+1)).css('display', 'block');
+                            $('.lnt-section'+pos).css('display', 'none');
+                            $('.lnt-section'+(pos+1)).css('display', 'block');
 
                         } else {
                             options.onFailed();                            
