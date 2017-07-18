@@ -26,6 +26,8 @@
 		<button id="btnYoutube" class="btn btn-default">Popup Youtube</button>
 		<button id="btnWithID" class="btn btn-default">Popup Con ID</button>
 		<button id="btnContent" class="btn btn-default">Popup desde contenido (Script template)</button>
+
+		<div id="container"></div>
 		
 		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
 		<script type="text/javascript" src="js/jquery.popup.js"></script>
@@ -38,7 +40,11 @@
 
 		<script>
 			$('#btnYoutube').on('click', function(){ 
-				$.popup({youtubeID: 'J2ffCgXZFPU', titulo : 'Nombre', texto : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'});
+				$.popup({
+							target: '#container',
+							youtubeID: 'J2ffCgXZFPU', 
+							title : 'Nombre', 
+							text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'});
 			});
 
 			$('#btnWithID').on('click', function(){

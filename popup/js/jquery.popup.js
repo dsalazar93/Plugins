@@ -6,13 +6,18 @@
 			opts = {content: opts};
 
 		var defaults = {
-			width: 800
+			width: 800,
+			target: $('body')
 		}
 
 		var options = $.extend({}, defaults, opts);
 
+		if (typeof options.target == 'string') {
+			options.target = $(options.target);
+		}
+
 		var elems = [];
-		elems.popup = 	$('<div>', {Class: 'lnt-popup'}).appendTo( $('body') );
+		elems.popup = 	$('<div>', {Class: 'lnt-popup'}).appendTo( options.target );
 		elems.close = 	$('<div>', {Class: 'icon-cross'}).appendTo(elems.popup);
 		elems.wrapper = $('<div>', {Class: 'lnt-popup-wrapper'}).appendTo(elems.popup);
 		elems.content = $('<div>', {Class: 'lnt-popup-content'}).appendTo(elems.wrapper);
@@ -32,22 +37,25 @@
 		}).css('width', options.width);
 
 		if (options.youtubeID) {
-			if (options.titulo){
+			if (options.title) {
 				elems.title = $('<div>', {Class: 'coo-title-video'}).appendTo(elems.wrapper);
-				elems.title.html(options.titulo);
+				elems.title.html(options.title);
 			}
-			if (options.texto){
-				elems.texto = $('<div>', {Class: 'coo-text-video'}).appendTo(elems.wrapper);
-				elems.texto.html(options.texto);
+
+			if (options.text) {
+				elems.text = $('<div>', {Class: 'coo-text-video'}).appendTo(elems.wrapper);
+				elems.text.html(options.text);
 			}
+
 			elems.content.css('padding', 0);
 			elems.video = $('<div>', {Class: 'lnt-video'}).appendTo(elems.content);
-			if ($.isNumeric(options.youtubeID))
-			{
+
+			if ($.isNumeric(options.youtubeID)) {
 				var src = 'https://player.vimeo.com/video/'+ options.youtubeID + '?autoplay=1&title=0&byline=0&portrait=0'
 			} else {
 				var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0';				
 			}
+			
 			var iframe = $('<iframe>', {width: '100%', height: '100%', src: src, allowfullscreen: true})
 								.appendTo(elems.video);
 		
