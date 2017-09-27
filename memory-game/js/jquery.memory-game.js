@@ -75,7 +75,7 @@
                             setTimeout(function(){
                                 $this.find(".picked").removeClass("picked");
                                 paused = false;
-                            }, 600);
+                            }, 2000);
                         }
 
                         if ($this.find(".matched").length == $this.find(".card").length) {
