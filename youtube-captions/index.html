@@ -45,13 +45,14 @@
 			id: 'youtube-captions',
 			width: 1200,
 			onLoad: function(elems) {
-				var video = elems.content.css('padding', '0')
+				this.video = elems.content.css('padding', '0')
 							 .find('.lnt-youtube-captions')
 							 .youtubeCaptions(
 							 	{ 
 							 		height: 'auto',
 							 		fs: 0,
 							 		autoplay: 1,
+							 		start: 15,
 							 		onended: function() {
 							 			alert('Sip');
 							 		}
@@ -60,7 +61,7 @@
 				elems.content.find('button').on('click', function(){
 					video.data('yt').pause();
 				});
-			} 
+			}
 		});
 	</script>
 </body>

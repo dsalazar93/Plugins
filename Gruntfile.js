@@ -10,6 +10,8 @@ module.exports = function(grunt) {
 					  'node_modules/jquery/dist/jquery.min.js',
 					  'node_modules/jquery-ui-dist/jquery-ui.min.js',
 					  'node_modules/bootstrap/dist/js/bootstrap.min.js',
+					  'node_modules/jScrollPane/script/jquery.mousewheel.js',
+					  'node_modules/jScrollPane/script/jquery.jscrollpane.min.js',
 					 ],
 				dest: 'common/js/vendors.min.js'
 			}

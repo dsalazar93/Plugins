@@ -20,7 +20,8 @@
 		var defaults = {
 			width: '100%',
 			autoplay: 1,
-			fs: 1
+			fs: 1,
+			start: 0
 		}
 
 		var options = $.extend({}, defaults, opts);
@@ -45,7 +46,8 @@
 				 .data('yt',{
 				 				play: function() { if(player.playVideo) player.playVideo(); paused = false; },
 				 				pause: function() {  if(player.pauseVideo) player.pauseVideo(); paused = true; },
-				 				stop: function() { if(player.stopVideo) plater.stopVideo(); }
+				 				stop: function() { if(player.stopVideo) player.stopVideo(); },
+				 				getCurrentTime: function() { if(player.getCurrentTime) return player.getCurrentTime(); }
 				 			});
 			
 			var playerDiv = $('<div>', { Class: 'player' })
@@ -73,7 +75,8 @@
 								rel: 0,
 								autoplay: options.autoplay,
 								fs: options.fs,
-								iv_load_policy: 0
+								iv_load_policy: 0,
+								start: options.start
 							},
 							events: {
 								'onReady': _events.onPlayerReady,
@@ -99,7 +102,7 @@
 						playlist = $this.find('.lnt-youtube-panel')
 							 .height( typeof options.height == 'number' ? options.height : playerDiv.height() )
 							 .find('.lnt-youtube-playlist')
-							 .jScrollPane({ contentWidth: '0px' });
+							 // .jScrollPane({ contentWidth: '0px' });
 
 						$(window).on('resize', function(){
 							$this.find('.lnt-youtube-panel')
@@ -134,7 +137,7 @@
 						if ($this.data('time') < currentTime && !$this.hasClass('fadeInRight')) {
 							$this.addClass('lnt-caps-actived');
 							
-							if (playlist) 
+							if (playlist && playlist.data('jsp')) 
 								playlist.data('jsp').scrollToElement($this);
 
 						} else if ($this.data('time') > currentTime) {
