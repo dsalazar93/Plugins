@@ -47,7 +47,8 @@
 				 				play: function() { if(player.playVideo) player.playVideo(); paused = false; },
 				 				pause: function() {  if(player.pauseVideo) player.pauseVideo(); paused = true; },
 				 				stop: function() { if(player.stopVideo) player.stopVideo(); },
-				 				getCurrentTime: function() { if(player.getCurrentTime) return player.getCurrentTime(); }
+				 				getCurrentTime: function() { if(player.getCurrentTime) return player.getCurrentTime(); },
+				 				getDuration: function() { if(player.getDuration) return player.getDuration(); },
 				 			});
 			
 			var playerDiv = $('<div>', { Class: 'player' })
