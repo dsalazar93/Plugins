@@ -53,7 +53,7 @@
 			if ($.isNumeric(options.youtubeID)) {
 				var src = 'https://player.vimeo.com/video/'+ options.youtubeID + '?autoplay=1&title=0&byline=0&portrait=0'
 			} else {
-				var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0enablejsapi=1';				
+				var src = 'https://www.youtube.com/embed/' + options.youtubeID + '?autoplay=1&amp;rel=0&amp;showinfo=0';				
 			}
 			
 			var iframe = $('<iframe>', {width: '100%', height: '100%', src: src, allowfullscreen: true})
