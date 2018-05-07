@@ -2,3 +2,5 @@ node_modules
 
 common/js/vendors.min.js
 common/css/vendors.css
+
+package-lock.json

@@ -91,7 +91,9 @@
             var history = JSON.parse(localStorage.getItem('history'));
 
             // Si no existe historial, creamos un array sin contenido
-            if (history === null) {} else {
+            if (history === null) {
+                history = []
+            } else {
                 // Como existe historial, lo recorremos para mostrar por pantalla
                 // cada elemento del historial en la zona correcta del HTML.
                 $.each(history, function(key, value) {

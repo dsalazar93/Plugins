@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<link rel="stylesheet" href="../common/css/vendors.css">
+		<link rel="stylesheet" href="../common/css/default.css">
+		<link rel="stylesheet" href="css/audio-player-list.css">
+	</head>
+	<body>
+
+		<div id="wrapper">
+			<div id="player" class="unc-player">
+
+				<div class="unc-player-header">
+					<div class="unc-header-bg" data-url="imgs/header.jpg"><span></span></div>
+					<div class="unc-header-top">
+						<div class="unc-player-volume icon-volume"></div>
+						<div class="unc-player-mute icon-mute"></div>
+					</div>
+					<div class="unc-header-bottom row">
+						<h3 class="unc-header-title"></h3>
+						<div class="unc-player-progressbar"><span></span></div>
+						
+						<div class="col-xs-4">
+							<div class="unc-player-back icon-skip-back"></div>
+						</div>
+						<div class="col-xs-4">
+							<div class="unc-player-play icon-play"></div>
+							<div class="unc-player-pause icon-pause"></div>
+						</div>
+						<div class="col-xs-4">
+							<div class="unc-player-next icon-skip-forward"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="unc-player-list"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="js/jquery.audio-player-list.js"></script>
+		<script>
+			var list = {				
+				audios: [
+					{
+						title: 'Ley de la cultura',
+						file: 'media/audio.mp3',
+						captions: [
+							{ start: 0, end: 4, title: 'Ley de la cultura' },
+							{ start: 5, end: 12, title: 'Cultura y patrimonio cultural' },
+							{ start: 13, end: 25, title: 'Generación de Políticas Culturales' },
+							{ start: 26, end: 40, title: 'Cuatro títulos la integran' }
+						]
+					},
+					{
+						title: 'Comunidades Negras',
+						file: 'media/m00_08.ogg',
+						captions: [
+							{ start: 0, end: 7, title: 'Ley 70 de 1993' },
+							{ start: 8, end: 18, title: 'Diversidad étnica' },
+							{ start: 19, end: 30, title: 'Integralidad y dignidad' },
+						]
+					}
+				]
+			}
+			$('#player').audioPlayerList(list);
+		</script>
+	</body>
+</html>

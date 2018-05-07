@@ -1,0 +1,90 @@
+.unc-player
+	min-width 300px
+	
+	.unc-player-header
+		height 200px
+		position relative
+		
+		.unc-header-bg
+			background-size cover
+			height 100%
+			position  absolute
+			width 100%
+			z-index -1
+			
+			span
+				background-color rgba(50,50,50,0.5)
+				display block
+				height 100%
+				width 100%
+			
+		[class*="icon-"]
+			color white
+			cursor pointer
+			font-size 20px
+			
+
+		.unc-header-top
+			margin 0
+			padding 15px
+			position absolute
+			text-align right
+			top 0
+			width 100%
+			
+			.unc-player-mute
+				display none
+		
+		.unc-header-bottom
+			bottom 0
+			margin 0
+			padding 15px
+			position absolute
+			text-align center
+			width 100%
+			
+			.unc-player-pause
+				display none
+				
+			.unc-header-title
+				color white
+				font-weight normal
+				margin-bottom 1em
+				text-align left 
+				
+
+		.unc-player-progressbar
+			border-top 1px solid #aaa
+			cursor pointer
+			margin-bottom 10px
+			width 100%
+			
+			span
+				background-color white
+				border-radius 50%
+				display block
+				height 10px
+				transform translateY(-50%)
+				width 10px
+	
+	.unc-player-list
+		max-height calc(100vh - 200px)
+		overflow scroll
+		
+		.unc-list-item
+			background-color #777
+			border-bottom 1px solid #aaa
+			cursor pointer
+			padding 10px
+			
+			&.active,
+			&:hover
+				background-color orange
+
+			.unc-list-title
+				color white
+				font-size 1.2em
+
+				small
+					color #bbb
+					margin-left 1em
