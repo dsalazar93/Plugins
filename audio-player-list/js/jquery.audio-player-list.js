@@ -23,7 +23,8 @@
 
 			elems.headerBG.css('background-image', 'url(' + elems.headerBG.data('url') + ')');
 
-			var audio = new Audio(options.audios[0].file);
+			$this.data('audio', new Audio(options.audios[0].file));
+			var audio = $this.data('audio')
 			audio.file = options.audios[0].file;
 
 			elems.play.on('click', function(){
