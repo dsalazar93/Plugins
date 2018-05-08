@@ -77,9 +77,11 @@
 			});
 
 			options.audios.forEach(function(item){
+				elems.playlist.append('<h4 class="unc-audio-title">' + item.title + '</h4>');
+
 				item.captions.forEach(function(caption){
 					var listitem = $('<div>', { Class: 'unc-list-item'}).html(
-							'<div class="unc-list-title">' + caption.title + '<small>' + item.title + '</small></div>'
+							'<div class="unc-list-title">' + caption.title + '</div>'
 						)
 
 					listitem.attr('data-file', item.file);
@@ -97,6 +99,7 @@
 							audio.src = item.file;
 						}
 						audio.currentTime = caption.start
+						elems.title.html(caption.title + '<small>' + item.title + '</small>')
 						elems.play.click();
 					});
 				});

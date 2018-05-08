@@ -1,5 +1,7 @@
 .unc-player
 	min-width 300px
+	position relative
+	z-index 1
 	
 	.unc-player-header
 		height 200px
@@ -51,6 +53,10 @@
 				font-weight normal
 				margin-bottom 1em
 				text-align left 
+				small
+					display block
+					color orange
+					margin-top .5em
 				
 
 		.unc-player-progressbar
@@ -75,6 +81,7 @@
 			background-color #777
 			border-bottom 1px solid #aaa
 			cursor pointer
+			overflow auto
 			padding 10px
 			
 			&.active,
@@ -88,3 +95,10 @@
 				small
 					color #bbb
 					margin-left 1em
+					
+		.unc-audio-title
+			background-color #efefef
+			color #777
+			margin 0 
+			padding 1em
+			text-transform uppercase
