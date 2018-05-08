@@ -87,6 +87,8 @@
 					listitem.attr('data-file', item.file);
 					listitem.attr('data-start', caption.start);
 					listitem.attr('data-end', caption.end);
+					listitem.attr('data-audio', item.title);
+					listitem.attr('data-title', caption.title);
 
 					elems.playlist.append(listitem);
 
@@ -118,7 +120,7 @@
 						if (ct >= $this.data('start') && ct <= $this.data('end') && !$this.hasClass('active')) {
 							$('.unc-list-item').removeClass('active')
 							$this.addClass('active');
-							console.log('chiange')
+							elems.title.html($this.data('title') + '<small>' + $this.data('audio') + '</small>')
 						}
 						
 					})
