@@ -1,124 +1,139 @@
-;(function($, undefined){
+;(function($, undefined) {
 	"use strict";
 
-	$.fn.hangmanGame = function(opts){
-
-		if (typeof opts == 'string')
-			opts = { word : opts };
+	$.fn.hangmanGame = function(opts) {
 
 		var defaults = {
-			words : 'juego del ahorcado'
+			img_start: 0,
+			img_file: 'img/aho',
+			img_ext: 'png',
+			letters: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ',
+			btnAgainText: 'Intenta nuevamente',
+			btnNextText: 'Siguiente juego',
+			btnExitText: 'Salir del juego',
+			btnClass: 'btn btn-default',
+			btnAgainCb: function() {},
+			btnNextCb: function() {},
+			btnExitCb: function() {}
 		}
 
 		var options = $.extend({}, defaults, opts);
 
-		 // if (!options.cards) options.cards = options.lsgwoerter;
-
 		return this.each(function(){
-			var $this = $(this);
+			var $this = $(this)
+				,imgFile = undefined
+				,picture = undefined
+				,_game = options.games[0]
+				,btnAgain = $('<button>', {Class: options.btnClass}).html(options.btnAgainText)
+				,btnNext = $('<button>', {Class: options.btnClass}).html(options.btnNextText)
+				,btnExit = $('<button>', {Class: options.btnClass}).html(options.btnExitText)
 
-			options.words = options.words.toUpperCase()
-
-			// var lsgwoerter = [
-			// 	["J", "A", "P", "O", "N"],
-			// ]
-
-        	// options.words.forEach(function(elem) {
-        	// 	elem.paragraph = elem;
-        	// });
-
-
-			// var random = Math.floor((Math.random()*(lsgwoerter.length-1))); 
-			// var lsgword = lsgwoerter[random]; //La palabra para adivinar será elegida de la matriz anterior
-			// var ratewort = new Array(lsgword.length);
-			// var error = 0;
+			_game.idx = 0;
 
 			var _events = {
-				init: function() {
-				   var letterfield = $("#letterfield"), text = ''; 
-				   for (var i = 0; i < ratewort.length; i++){
-					   text += ratewort[i];
-				   }
-				   letterfield.text(text);
+				init: function(game) {
+					$this.find('.unc-hangman-question').html(game.question);
+					options.img_start = 0;
+					imgFile = options.img_file + options.img_start + '.' + options.img_ext
+					picture = $this.find('.unc-hangman-picture').attr('src', imgFile)
+					game.answer = game.answer.toUpperCase();
+					var answerArr = game.answer.split(' ');
+					$('.unc-hangman-answer').html('');
+
+					for(var i = 0; i < answerArr.length; i++) {
+						var word = $('<span>', {Class: 'unc-hangman-answer-word'})
+
+						for (var j = 0; j < answerArr[i].length; j++) {
+							var letter = $('<span>', { Class: 'unc-hangman-answer-letter' })
+											.html('&nbsp;')
+											.data('letter', answerArr[i][j])
+											.appendTo(word)
+						}
+
+						$this.find('.unc-hangman-answer')
+							 .append(word)
+							 .append('<span class="unc-hangman-answer-letter unc-hangman-space">&nbsp;</span>');
+
+						$this.find('.unc-hangman-letter').removeClass('error success disabled')
+					}
+
+					btnAgain.on('click', function(){
+						if (options.btnAgainCb() != false)
+							_events.init(_game);
+					});
+
+					btnNext.on('click', function(){
+						if (options.btnNextCb() != false) {
+							var idx = _game.idx + 1;
+							_game = options.games[idx];
+							_game.idx = idx;
+							_events.init(_game);
+						}
+					});
+
+					btnExit.on('click', function(){
+						options.btnExitCb();
+					});
 				}
-		  	};
-
-
-			var elems = [];
-			elems.container = $this.addClass('hangman-game');
-			elems.form = $('<form>', { Class: 'formulario', name: 'letterform'}).appendTo(elems.container);
-			elems.img = $('<img>', { Id: 'hangman', src: 'img/aho0.png'}).appendTo(elems.form);
-			elems.inputLetter = $('<input>', { Class: 'inputLetter', name: 'lettercharacter', type:'text'}).appendTo(elems.form);
-			elems.inputButton = $('<input>', { Class: 'buttonLetter', name: 'ratebutton', type:'button', value: 'Guess'}).appendTo(elems.form);
-			elems.paragraph = $('<p>', {Id: 'letterfield'}).appendTo(elems.form);
-			elems.campus = $('<p>', { Id: 'gerateneBuchstaben'}).appendTo(elems.form);
-
-
-
-
-			//Comprueba si la letra proporcionada por el usuario coincide con una o más de las letras de la palabra
-			elems.inputButton.on('click', function(){
-					   var f = document.letterform; 
-					   var b = f.elements["lettercharacter"]; 
-					   var character = b.value; // La carta proporcionada por el usuario
-					   character = character.toUpperCase();
-					   for (var i = 0; i < lsgword.length; i++){
-					      if(lsgword[i] === character){
-					         ratewort[i] = character + " ";
-					         var treffer = true;
-					      }
-					   	b.value = "";
-				   		}
-
-
-
-
-				   //Elimina el campo de predicción y lo reemplaza con el nuevo
-				   var letterfield = $("#letterfield");
-				   letterfield.innerHTML=""; 
-				   _events.init();
-
-
-
-
-				   // Si una letra adivinada no está en la palabra, la letra será puesta en las "letras equivocadas" -list y el verdugo crece
-				   if(!treffer){
-						var gerateneBuchstaben = $("#gerateneBuchstaben");
-						var buchstabe = document.createTextNode(" " + character);
-						var hangman = $("#hangman");
-
-						gerateneBuchstaben[0].appendChild(buchstabe); 
-						hangman.attr('src', "img/aho" + error + ".png");
-						error++;
-				   }
-				   
-				   //Comprueba si se han encontrado todas las letras
-				   var fertig = true;
-				   for (var i = 0; i < ratewort.length; i++){
-				      if(ratewort[i] === "_ "){
-				         fertig = false;
-				      }
-				   }
-				   if(fertig){
-				      window.alert("You win!");
-				   }
-
-			});
-			// Cada letra de la palabra está simbolizada por un guión bajo en el campo de adivinación
-			for (var i = 0; i < ratewort.length; i++){
-			   ratewort[i] = "_ ";
 			}
-	
-			_events.init();
 
+			// Añadiendo teclado alfabético
+			for (var i = 0; i < options.letters.length; i++) {
+				var letter = $('<span>', { Class: 'unc-hangman-letter' }).html(options.letters[i]);
+				$this.find('.unc-hangman-letters').append(letter);
+
+				letter.on('click', function() {
+					var $letter = $(this);
+
+					if($letter.hasClass('error') || $letter.hasClass('success') || $letter.hasClass('disabled'))
+						return;
+
+					$('.unc-hangman-answer-letter').each(function(){
+						var _$this = $(this);
+						if (_$this.data('letter') == $letter.html())
+							_$this.html($letter.html());
+					});
+					
+					if (_game.answer.indexOf($letter.html()) == -1) {
+						$letter.addClass('error');
+						options.img_start++
+						imgFile = options.img_file + options.img_start + '.' + options.img_ext;
+						picture.attr('src', imgFile);
+
+						//Game Over
+						if (options.img_start == 6) {
+							$this.find('.unc-hangman-letter').addClass('disabled');
+							$this.find('.unc-hangman-question').html(btnAgain);
+						}
+
+					
+					} else {
+						$letter.addClass('success');
+
+						// Check game
+						var flag = true;
+						$this.find('.unc-hangman-answer .unc-hangman-answer-letter')
+							 		.filter(':not(.unc-hangman-space)').each(function(){
+							
+							var $letter = $(this);
+
+							if ($letter.html() == '&nbsp;')
+								flag = false;
+						});
+
+						if (flag) {
+							$this.find('.unc-hangman-letter').addClass('disabled');
+
+							if (_game.idx + 1 < options.games.length)
+								$this.find('.unc-hangman-question').html(btnNext);
+							else
+								$this.find('.unc-hangman-question').html(btnExit);
+						}
+					}
+				});
+			}
+
+			_events.init(_game);
 		});
 	}
 })(jQuery);
-
-
-
-
-
-
-
-

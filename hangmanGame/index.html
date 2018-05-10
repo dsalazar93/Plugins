@@ -1,61 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <link rel="stylesheet" href="../common/css/vendors.css">
     <link rel="stylesheet" href="../common/css/default.css">
-    <!-- <link rel="stylesheet" href="css/hangman-game.css"> -->
-    <!-- <link rel="stylesheet" href="../popup/css/popup.css"> -->
-
-<style type="text/css">
-
-
-body {
-
-   text-align: center;
-   font-family: Helvetica, sans-serif;
-}
-input {
-   border: 2px solid #999;
-   font-family: Helvetica, sans-serif;
-   color: #999;
-}
-
-#ratefeld {
-   font-family: 'Permanent Marker', 'cursive';
-   font-size: 2.0em;
-}
-
-h1 {
-   font-family: 'Permanent Marker', 'cursive';
-}
-#hangman{
-   width: 300PX;
-}
-</style>
-
-    
+    <link rel="stylesheet" href="css/hangman-game.css">
 </head>
-
 <body>
+    <div id="hangman-game" class="unc-hangman">
+        <div class="unc-hangman-question"></div>
+        <img src="" class="unc-hangman-picture">
+        <div class="unc-hangman-answer"></div>
+        <div class="unc-hangman-letters"></div>
+    </div>
+    
+    <script type="text/javascript" src="../common/js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hangman-game.js"></script>
 
-<div class="hangman-game"></div>
-
-  
-<script type="text/javascript" src="../common/js/vendors.min.js"></script>
-<script type="text/javascript" src="js/jquery.hangman-game.js"></script>
-<!-- <script type="text/javascript" src="../popup/js/jquery.popup.js"></script> -->
-
-<script>
-    $('.hangman-game').hangmanGame();
-    $('.hangman-game').hangmanGame('Nacional para el mundial de clubes en japon');
-    $('.hangman-game').hangmanGame({ words: 'Nacional para el mundial de clubes en japon'});
-</script>
-
+    <script>
+        $('#hangman-game').hangmanGame({
+                games: [
+                    {
+                        question: '¿Qué seleccción ganará el mundial de Rusia 2018?',
+                        answer: 'La seleccion colombia'
+                    },
+                    {
+                        question: '¿Donde se jugará el mundial de futbol del 2018?',
+                        answer: 'Se jugara en RUSIA'
+                    }
+                ]
+            }
+        );
+    </script>
 </body>
 </html>
-
-
-
-
