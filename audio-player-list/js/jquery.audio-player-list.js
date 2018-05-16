@@ -53,22 +53,22 @@
 
 			elems.next.on('click', function(){
 				var _idx = 0;
-				$('.unc-list-item').each(function(idx){
+				$this.find('.unc-list-item').each(function(idx){
 					if ($(this).hasClass('active'))
 						_idx = idx
 				});
 
-				$('.unc-list-item').eq(_idx + 1).click();
+				$this.find('.unc-list-item').eq(_idx + 1).click();
 			});
 
 			elems.back.on('click', function(){
 				var _idx = 0;
-				$('.unc-list-item').each(function(idx){
+				$this.find('.unc-list-item').each(function(idx){
 					if ($(this).hasClass('active'))
 						_idx = idx
 				});
 
-				$('.unc-list-item').eq(_idx - 1).click();
+				$this.find('.unc-list-item').eq(_idx - 1).click();
 			});
 
 			elems.progressbar.on('click', function(e){
@@ -94,7 +94,7 @@
 					elems.playlist.append(listitem);
 
 					listitem.on('click', function(){
-						$('.unc-list-item').removeClass('active')
+						$this.find('.unc-list-item').removeClass('active')
 						$(this).addClass('active');
 
 						if (audio.file != item.file) {
@@ -115,13 +115,14 @@
 
 					var pos = ct / duration * 100
 					elems.progressbar.find('span').css('margin-left', pos + '%');
-
-					$('.unc-list-item[data-file="' + audio.file + '"]').each(function(){
-						var $this = $(this);
-						if (ct >= $this.data('start') && ct <= $this.data('end') && !$this.hasClass('active')) {
-							$('.unc-list-item').removeClass('active')
-							$this.addClass('active');
-							elems.title.html($this.data('title') + '<small>' + $this.data('audio') + '</small>')
+					
+					$this.find('.unc-list-item[data-file="' + audio.file + '"]').each(function(){
+						
+						var _$this = $(this);
+						if (ct >= _$this.data('start') && ct <= _$this.data('end') && !_$this.hasClass('active')) {
+							$this.find('.unc-list-item').removeClass('active')
+							_$this.addClass('active');
+							elems.title.html(_$this.data('title') + '<small>' + _$this.data('audio') + '</small>')
 						}
 						
 					})
