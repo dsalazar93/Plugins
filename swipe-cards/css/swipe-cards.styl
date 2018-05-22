@@ -1,0 +1,71 @@
+.unc-swipe-cards
+	height 400px
+	padding 1em
+	position relative
+	width 100%
+	
+.unc-swipe-card
+	background-color #aaa
+	height 100%
+	left 0
+	padding 1em 5em
+	position absolute
+	top 0
+	width 100%
+	
+	.unc-swipe-left,
+	.unc-swipe-right
+		align-items center
+		background-color rgba(200,200,200,0.5)
+		border-radius 50%
+		cursor pointer
+		display flex
+		height 50px
+		left 15px
+		justify-content center
+		position absolute
+		top calc(50% - 25px)
+		width 50px
+		
+	.unc-swipe-right
+		left auto
+		right 15px
+		
+	.unc-card-title
+		border-bottom thin solid #ccc
+		padding .5em
+		margin-bottom 1em
+		
+	.unc-card-question
+		.unc-card-left-image
+			display inline-block
+			vertical-align middle
+			width 80px
+			max-width 20%
+			
+		.unc-card-content
+			display inline-block
+			vertical-align middle
+			width 75%
+			
+	.unc-card-answers
+		margin-top 1em
+		
+		> div
+			margin 1em 1em 0 0
+		
+		.unc-card-letter
+			align-items center
+			border 2px solid #ccc
+			border-radius 50%
+			display inline-flex
+			justify-content center
+			height 30px
+			width 30px
+			
+		.unc-card-answer
+			display inline-block
+			margin-left 1em
+			vertical-align top
+			width calc(100% - 50px)
+				

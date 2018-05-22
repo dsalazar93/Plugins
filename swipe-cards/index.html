@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../common/css/vendors.css">
+		<link rel="stylesheet" href="../common/css/default.css">
+		<link rel="stylesheet" href="css/swipe-cards.css">
+	</head>
+	<body>
+
+		<div id="swipe" class="unc-swipe-cards"></div>
+
+		<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+		<script type="text/javascript" src="js/jquery.swipe-cards.js"></script>
+		<script>
+			$('#swipe').swipeCards({
+				emptyText: 'No hay mas preguntas',
+				title: 'Este es el título superior',
+				questions: [
+					{
+						question: '¿Es Colombia la mejor del mundo?',
+						left: 'Si',
+						right: 'No',
+						correct: 'left',
+						leftImage: 'img/img1.png'
+					},
+					{
+						question: '¿Nos vamos a volver ricos?',
+						left: 'Una buena',
+						right: 'Una mala',
+						correct: 'right',
+						leftImage: 'img/img2.png'
+					}
+				]
+			})
+		</script>
+	</body>
+</html>
