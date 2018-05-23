@@ -12,7 +12,7 @@
 		var options = $.extend({}, defaults, opts);
 
 		return this.each(function(){
-			var $this = $(this);
+			var $this = $(this).css('background-image', options.bgImage);
 
 			$this.html('<span class="unc-empty-text">' + options.emptyText + '</span>');
 

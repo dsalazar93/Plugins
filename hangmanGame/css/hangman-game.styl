@@ -1,10 +1,23 @@
 .unc-hangman	
+	border-radius 10px
+	margin 0 auto
+	max-width 100%
+	min-height 400px
+	padding 2em
 	text-align center
+	width 600px
+	
+	.unc-hangman-title
+		color white
+		border-bottom thin solid #ccc
+		padding .5em
+		margin-bottom 1em
+		text-align left
 	
 	.unc-hangman-question
-		font-size 1.5em
-		font-weight bold
-		text-align center
+		color white
+		font-size 1.2em
+		text-align left
 	
 	img
 		max-width 250px
@@ -19,6 +32,7 @@
 			display inline-block
 		
 		span.unc-hangman-answer-letter
+			color white
 			border-bottom 2px solid #aaa
 			display inline-block
 			font-size 1em
@@ -33,11 +47,12 @@
 				border none
 			
 	.unc-hangman-letters
-		margin 0 auto
+		margin 1em auto
 		max-width 250px
 		text-align center
 		
 		span
+			background-color white
 			border thin solid #ccc
 			border-radius 3px
 			cursor pointer
@@ -56,3 +71,14 @@
 				color green
 			&.disabled
 				color #aaa
+	
+	.unc-hangman-finished
+		color white
+		display block
+		font-size 1.2em
+		text-align center
+		
+		img
+			display block
+			margin 0 auto
+			width 80px

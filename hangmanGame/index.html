@@ -22,6 +22,8 @@
 
     <script>
         $('#hangman-game').hangmanGame({
+                bgImage: 'linear-gradient(#2196F3,#00BCD4)',
+                title: 'Este es el título superior',
                 games: [
                     {
                         question: '¿Qué seleccción ganará el mundial de Rusia 2018?',
@@ -31,7 +33,10 @@
                         question: '¿Donde se jugará el mundial de futbol del 2018?',
                         answer: 'Se jugara en RUSIA'
                     }
-                ]
+                ],
+                finished: function() {
+                    $('#hangman-game').html('<div class="unc-hangman-finished">Juego Terminado</div>')
+                }
             }
         );
     </script>

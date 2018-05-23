@@ -12,21 +12,21 @@
 			btnNextText: 'Siguiente juego',
 			btnExitText: 'Salir del juego',
 			btnClass: 'btn btn-default',
+			bgImage: 'linear-gradient(#2196F3,#00BCD4)',
 			btnAgainCb: function() {},
 			btnNextCb: function() {},
-			btnExitCb: function() {}
+			finished: function() { console.log('Game Over!!') }
 		}
 
 		var options = $.extend({}, defaults, opts);
 
 		return this.each(function(){
-			var $this = $(this)
+			var $this = $(this).css('background', options.bgImage).prepend('<div class="unc-hangman-title">' + options.title + '</div>')
 				,imgFile = undefined
 				,picture = undefined
 				,_game = options.games[0]
 				,btnAgain = $('<button>', {Class: options.btnClass}).html(options.btnAgainText)
 				,btnNext = $('<button>', {Class: options.btnClass}).html(options.btnNextText)
-				,btnExit = $('<button>', {Class: options.btnClass}).html(options.btnExitText)
 
 			_game.idx = 0;
 
@@ -69,10 +69,6 @@
 							_game.idx = idx;
 							_events.init(_game);
 						}
-					});
-
-					btnExit.on('click', function(){
-						options.btnExitCb();
 					});
 				}
 			}
@@ -126,8 +122,9 @@
 
 							if (_game.idx + 1 < options.games.length)
 								$this.find('.unc-hangman-question').html(btnNext);
-							else
-								$this.find('.unc-hangman-question').html(btnExit);
+							else {
+								options.finished();
+							}
 						}
 					}
 				});
