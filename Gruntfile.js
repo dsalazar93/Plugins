@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 					  'node_modules/bootstrap/dist/js/bootstrap.min.js',
 					  'node_modules/jScrollPane/script/jquery.mousewheel.js',
 					  'node_modules/jScrollPane/script/jquery.jscrollpane.min.js',
+					  'node_modules/timecircles/inc/TimeCircles.js',
 					 ],
 				dest: 'common/js/vendors.min.js'
 			}
@@ -33,6 +34,7 @@ module.exports = function(grunt) {
 						"common/css/fonts.css",
 						"node_modules/bootstrap/dist/css/bootstrap.css",
 						"node_modules/animate.css/animate.min.css",
+						'node_modules/timecircles/inc/TimeCircles.css',
 					]
 				}
 			}

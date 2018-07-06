@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Conjunto de plugins como herramientas interactivas",
   "dependencies": {
-    "napa": "^2.3.0"
+    "napa": "^2.3.0",
+    "timecircles": "git+https://github.com/wimbarelds/TimeCircles.git"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

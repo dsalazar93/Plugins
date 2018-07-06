@@ -1,0 +1,50 @@
+.unc-youtube-questions
+	max-width 100%
+	position relative
+	
+	.player
+		width 100%
+		
+		> div
+			padding-bottom 56.25%
+			position relative
+			height 0
+	
+			iframe
+				left 0
+				height 100%
+				position absolute
+				top 0
+				width 100%
+				
+	.unc-wrapper-questions
+		background-color rgba(255,255,255,0.6)
+		bottom 0
+		display none
+		height 200px
+		left 0
+		margin 0 auto
+		position absolute
+		right 0
+		text-align center
+		width 80%
+		
+		.unc-question
+			background-color #ccc
+			margin 0 auto
+			padding .5em
+			transform translateY(-50%)
+			width 80%
+		
+		.unc-answer
+			background-color #ccc
+			cursor pointer
+			display inline-block
+			margin 2%
+			vertical-align top
+			width 35%
+			
+			&.unc-answer-active
+				background-color #eee;
+		
+		

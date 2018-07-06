@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../common/css/vendors.css">
+	<link rel="stylesheet" href="../common/css/default.css">
+	<link rel="stylesheet" href="css/youtube-questions.css">
+	<style>
+		
+	</style>
+</head>
+<body>
+
+	<div id="player" class="unc-youtube-questions" data-id="YVHqAoP0ksE"></div>
+
+	<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+	<script type="text/javascript" src="js/jquery.youtube-questions.js"></script>
+
+	<script>
+		$('#player').youtubeQuestions({
+			autoplay: 1,
+			controls: 1,
+			start: 17,
+			feedback: [33,36,28,32],
+			finish: 195,
+			questions: [
+				{
+					start: 0,
+					end: 21,
+					text: 'Es el tipo de innovación que introduce un nuevo producto o servicio en un segmento de clientes desatendidos de un mercado bien establecido y que crece hasta desestabilizar la competencia y abarcar gran parte del mercado',
+					answers: [
+						{ text: 'Innovación incremental', correct: false },
+						{ text: 'Innovación tecnológica', correct: false },
+						{ text: 'Innovación disruptiva', correct: true },
+						{ text: 'Innovación sustancial', correct: false },
+					]
+				},
+				{
+					start: 37,
+					end: 51,
+					text: 'Un caso visto en el curso en el que no se aprovechó la potencialidad de una innovación disruptiva, es el de:',
+					answers: [
+						{ text: 'Kodak', correct: false },
+						{ text: 'Polaroid', correct: false },
+						{ text: 'Canon', correct: true },
+						{ text: 'Go Pro', correct: false },
+					]
+				}
+			]
+		})
+	</script>
+</body>
+</html>
