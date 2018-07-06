@@ -93,7 +93,7 @@
 				 * 
 				 * @param Object question
 				 */
-				setQuestion(question) {
+				setQuestion: function(question) {
 					$this.data('yt').pause();
 
 					questionsDiv.html('');
@@ -164,7 +164,7 @@
 						$this.data('yt').seekTo(options.questions[idxCQ].end - 1);
 					}
 					
-					options.questions.forEach(function(question, idx){
+					options.questions.forEach(function(question, idx) {
 						if (currentTime == question.end) {
 							idxCQ = idx;
 							_events.setQuestion(question);
