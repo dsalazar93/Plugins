@@ -42,8 +42,9 @@
 			
 				,$source = $('<source>', { type: 'audio/mpeg', src: audioSrc })
 				,$audio = $('<audio>', {controls: true}).append($source).appendTo($this)
-				,audio = $audio.get(0)
+				,audio = $audio.get(0);
 
+			$this.data('audio', audio);
 
 			options.page.setTimeout(function(){
 				audio.play();
@@ -67,9 +68,9 @@
 			var _events = {
 
 				/**
-				 * This function is called when the current playback position has changet¿d
+				 * This function is called when the current playback position has changed
 				 */
-				ontimeupdate: function() {
+				ontimeupdate: function(a,b) {
 					caps.each(function(){
 						
 						var $this = $(this)
@@ -78,14 +79,35 @@
 							,effect = $this.data('animated') || 'bounceInRight';
 
 						if (start <= parseInt(audio.currentTime)*1000) {
-							$this.addClass(effect);
+							if (!end || end >= parseInt(audio.currentTime)*1000) {
+								if (!$this.hasClass(effect))
+									if ($this.prop('tagName') == 'LI')
+										$this.css('display', 'list-item').addClass(effect);
+									else
+										$this.css('display', 'inherit').addClass(effect);
+							}
 						} else {
-							$this.removeClass(effect);
+							if ($this.hasClass(effect))
+								$this.removeClass(effect);
+
+							if ($this.hasClass('no-display')) {
+								if ($this.css('display') != 'none')
+									$this.css('display','none');
+							} else {
+								if ($this.css('display') == 'none')
+									if ($this.prop('tagName') == 'LI')
+										$this.css('display', 'list-item').addClass(effect);
+									else if (!end || end > parseInt(audio.currentTime)*1000)
+										$this.css('display', 'inherit').addClass(effect);
+							}
 						}
 
-						if (end && end <= parseInt(audio.currentTime)*1000)
+						if (end && end <= parseInt(audio.currentTime)*1000 && $this.hasClass(effect))
 							$this.css('display', 'none').removeClass(effect);
 					});
+
+					if (options.ontimeupdate)
+						options.ontimeupdate(audio.currentTime);
 				},
 
 				/**

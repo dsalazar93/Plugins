@@ -5,6 +5,7 @@
         var options = {
             numBtns: 10,
             radius: 150,
+            translateY: '70%'
         }
 
         options = $.extend({}, options, opt);
@@ -21,6 +22,7 @@
             $this.css({ 
                 width: options.radius*2, 
                 height: options.radius*2,
+                transform: 'translateY(' + options.translateY + ')'
             });
 
             var delta = Math.PI*2/(options.numBtns + 1);
@@ -34,15 +36,17 @@
                                     .html(i)
                                     .data('theta', theta)
                                     .data('idx', i)
-                                    .appendTo($this);
-                        
-                        btn.css({
-                            width: rds*2,
-                            height: rds*2,
-                            top: 'calc(50% - ' + (options.radius-rds*1.5)*Math.sin(theta + Math.PI/2) + 'px)',
-                            left: 'calc(50% - ' + (options.radius-rds*1.5)*Math.cos(theta + Math.PI/2) + 'px)',
-                            transform: 'translate(-50%, -50%) rotate(' + (-(Math.PI/2)+theta + Math.PI/2) + 'rad)'
-                        });
+                                    .appendTo($this)
+                                    .css({
+                                        width: rds*2,
+                                        height: rds*2,
+                                        top: 'calc(50% - ' + (options.radius-rds*1.5)*Math.sin(theta + Math.PI/2) + 'px)',
+                                        left: 'calc(50% - ' + (options.radius-rds*1.5)*Math.cos(theta + Math.PI/2) + 'px)',
+                                        transform: 'translate(-50%, -50%) rotate(' + (-(Math.PI/2)+theta + Math.PI/2) + 'rad)'
+                                    });
+
+                        if (options.images && options.images[i])
+                            btn.css('background-image', 'url(' + options.images[i] + ')');
 
                         btn.on('click', function() {
                             var _$this = $(this);
@@ -50,7 +54,7 @@
                             options.btnFunctions && options.btnFunctions[_$this.data('idx')]
                                     && options.btnFunctions[_$this.data('idx')]()
 
-                            $this.css('transform', 'translateY(70%) rotate(-' + _$this.data('theta') + 'rad)');
+                            $this.css('transform', 'translateY(' + options.translateY + ') rotate(-' + _$this.data('theta') + 'rad)');
                         })
                     }
                 }

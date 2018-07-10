@@ -17,10 +17,10 @@
 		}
 
 		var elems = [];
-		elems.popup = 	$('<div>', {Class: 'lnt-popup'}).appendTo( options.target );
+		elems.popup = 	$('<div>', {Class: 'unc-popup'}).appendTo( options.target );
 		elems.close = 	$('<div>', {Class: 'icon-cross'}).appendTo(elems.popup);
-		elems.wrapper = $('<div>', {Class: 'lnt-popup-wrapper'}).appendTo(elems.popup);
-		elems.content = $('<div>', {Class: 'lnt-popup-content'}).appendTo(elems.wrapper);
+		elems.wrapper = $('<div>', {Class: 'unc-popup-wrapper'}).appendTo(elems.popup);
+		elems.content = $('<div>', {Class: 'unc-popup-content'}).appendTo(elems.wrapper);
 
 		elems.popup.on('click', function(){
 			if (options.onClose) options.onClose(elems);
@@ -38,17 +38,17 @@
 
 		if (options.youtubeID) {
 			if (options.title) {
-				elems.title = $('<div>', {Class: 'coo-title-video'}).appendTo(elems.wrapper);
+				elems.title = $('<div>', {Class: 'unc-title-video'}).appendTo(elems.wrapper);
 				elems.title.html(options.title);
 			}
 
 			if (options.text) {
-				elems.text = $('<div>', {Class: 'coo-text-video'}).appendTo(elems.wrapper);
+				elems.text = $('<div>', {Class: 'unc-text-video'}).appendTo(elems.wrapper);
 				elems.text.html(options.text);
 			}
 
 			elems.content.css('padding', 0);
-			elems.video = $('<div>', {Class: 'lnt-video'}).appendTo(elems.content);
+			elems.video = $('<div>', {Class: 'unc-video'}).appendTo(elems.content);
 
 			if ($.isNumeric(options.youtubeID)) {
 				var src = 'https://player.vimeo.com/video/'+ options.youtubeID + '?autoplay=1&title=0&byline=0&portrait=0'
