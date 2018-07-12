@@ -22,7 +22,9 @@
 			autoplay: 1,
 			fs: 1,
 			start: 0,
-			controls: 0
+			controls: 0,
+			circle_bg_color: '#03297F',
+			circleStart: true
 		}
 
 		var options = $.extend({}, defaults, opts);
@@ -117,6 +119,25 @@
 											questionsDiv.hide();
 										});
 					});
+
+					if ($.fn.TimeCircles) {
+						var timeCircles = $('<div>').data('timer', question.timer || 60)
+													.appendTo(questionsDiv)
+													.TimeCircles({
+														start: options.circleStart,
+														circle_bg_color: options.circle_bg_color,
+														count_past_zero: false,
+														total_duration: question.timer || 60,
+														time: {
+															Days: {show: false},
+															Hours: {show: false},
+															Minutes: {show: false}
+														}
+													}).addListener(function(unit, value, total) {
+														if (total <= 0 && question.ontimerend)
+															question.ontimerend();
+													});
+					}
 
 					questionsDiv.show();
 				},

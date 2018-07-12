@@ -27,13 +27,17 @@
 				{
 					start: 0,
 					end: 21,
+					timer: 3,
 					text: 'Es el tipo de innovación que introduce un nuevo producto o servicio en un segmento de clientes desatendidos de un mercado bien establecido y que crece hasta desestabilizar la competencia y abarcar gran parte del mercado',
 					answers: [
 						{ text: 'Innovación incremental', correct: false },
 						{ text: 'Innovación tecnológica', correct: false },
 						{ text: 'Innovación disruptiva', correct: true },
 						{ text: 'Innovación sustancial', correct: false },
-					]
+					],
+					ontimerend: function() {
+						console.log('Termino');
+					}
 				},
 				{
 					start: 37,
