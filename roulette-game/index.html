@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../common/css/vendors.css">
+	<link rel="stylesheet" href="../common/css/default.css">
+	<link rel="stylesheet" href="css/roulette-game.css">
+	<style>
+		
+	</style>
+</head>
+<body>
+
+	<div id="roulette" class="unc-roulette-game"></div>
+
+	<script type="text/javascript" src="../common/js/vendors.min.js"></script>
+	<script type="text/javascript" src="js/jquery.roulette-game.js"></script>
+
+	<script>
+		$('#roulette').rouletteGame({
+			rouletteImage: 'img/bg.png',
+			baseImage: 'img/base.png',
+			pinImage: 'img/pin.png',
+			questions: [
+				{
+					text: '¿Nuestra propuesta de valor atiende a un segmento de clientes desatendido?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: true },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: false },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+				{
+					text: '¿2?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: true },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+				{
+					text: '¿3?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: true },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+				{
+					text: '¿4?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: true },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+				{
+					text: '¿5?',
+					answers: [
+						{ text: 'a. Es cierto', correct: true },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: false },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+				{
+					text: '¿6?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: false },
+						{ text: 'e. No es necesario', correct: true }
+					]
+				},
+				{
+					text: '¿7?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: false },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: false },
+						{ text: 'e. No es necesario', correct: true }
+					]
+				},
+				{
+					text: '¿8?',
+					answers: [
+						{ text: 'a. Es cierto', correct: false },
+						{ text: 'b. Parcialmente cierto', correct: true },
+						{ text: 'c. No es cierto', correct: false },
+						{ text: 'd. Puede ser cierto', correct: false },
+						{ text: 'e. No es necesario', correct: false }
+					]
+				},
+
+			]
+		})
+	</script>
+</body>
+</html>
