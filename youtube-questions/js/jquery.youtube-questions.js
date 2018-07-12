@@ -120,6 +120,8 @@
 										});
 					});
 
+					questionsDiv.show();
+
 					if ($.fn.TimeCircles) {
 						var timeCircles = $('<div>').data('timer', question.timer || 60)
 													.appendTo(questionsDiv)
@@ -138,8 +140,6 @@
 															question.ontimerend();
 													});
 					}
-
-					questionsDiv.show();
 				},
 
 				/**
