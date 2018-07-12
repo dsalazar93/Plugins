@@ -25,7 +25,7 @@
                 transform: 'translateY(' + options.translateY + ')'
             });
 
-            var delta = Math.PI*2/(options.numBtns + 1);
+            var delta = Math.PI*2/(options.numDivs ? options.numDivs : options.numBtns + 1);
             var rds = options.radius/8;
 
             var _events = {
