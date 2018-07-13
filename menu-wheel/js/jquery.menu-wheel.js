@@ -10,7 +10,7 @@
 
         options = $.extend({}, options, opt);
 
-        this.each(function(){
+        return this.each(function(){
             var $this = $(this);
 
             if ($this.data('num-btns'))
@@ -24,6 +24,8 @@
                 height: options.radius*2,
                 transform: 'translateY(' + options.translateY + ')'
             });
+
+            options.radius = parseInt($this.css('width'))/2;
 
             var delta = Math.PI*2/(options.numDivs ? options.numDivs : options.numBtns + 1);
             var rds = options.radius/8;
@@ -57,10 +59,28 @@
                             $this.css('transform', 'translateY(' + options.translateY + ') rotate(-' + _$this.data('theta') + 'rad)');
                         })
                     }
+                },
+                resize: function() {
+                    if (options.radius == parseInt($this.css('width'))/2) return;
+                    
+                    options.radius = parseInt($this.css('width'))/2;
+                    var rds = options.radius/8;
+                    
+                    $this.find('.unc-menu-wheel-btn').each(function(i, btn){
+                        var theta = delta*i;
+                        
+                        $(btn).css({
+                            width: rds*2,
+                            height: rds*2,
+                            top: 'calc(50% - ' + (options.radius-rds*1.5)*Math.sin(theta + Math.PI/2) + 'px)',
+                            left: 'calc(50% - ' + (options.radius-rds*1.5)*Math.cos(theta + Math.PI/2) + 'px)',
+                        })
+                    });
                 }
             }
 
             _events.init();
+            $(window).on('resize', _events.resize)
         });
 
     }
