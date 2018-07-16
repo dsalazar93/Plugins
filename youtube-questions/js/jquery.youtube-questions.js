@@ -175,14 +175,14 @@
 				onProgress: function(currentTime) {
 					if (currentTime == options.feedback[1]) {
 						if (options.questions.length > idxCQ + 1) {
-							$this.data('yt').seekTo(options.questions[idxCQ + 1]);
+							$this.data('yt').seekTo(options.questions[idxCQ + 1].start);
 						
 						} else {
 							$this.data('yt').seekTo(options.finish);
 						}
 					
 					} else if (currentTime == options.feedback[3]) {
-						$this.data('yt').seekTo(options.questions[idxCQ].end - 1);
+						$this.data('yt').seekTo(options.questions[idxCQ].end - 0.1);
 					}
 					
 					options.questions.forEach(function(question, idx) {
