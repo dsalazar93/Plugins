@@ -182,7 +182,7 @@
 						}
 					
 					} else if (currentTime == options.feedback[3]) {
-						$this.data('yt').seekTo(options.questions[idxCQ].end - 0.1);
+						$this.data('yt').seekTo(options.questions[idxCQ].end - 0.3);
 					}
 					
 					options.questions.forEach(function(question, idx) {
