@@ -20,7 +20,7 @@
 		var defaults = {
 			width: '100%',
 			autoplay: 1,
-			fs: 1,
+			fs: 0,
 			start: 0,
 			controls: 0,
 			circle_bg_color: '#03297F',
@@ -182,7 +182,7 @@
 						}
 					
 					} else if (currentTime == options.feedback[3]) {
-						$this.data('yt').seekTo(options.questions[idxCQ].end - 0.3);
+						$this.data('yt').seekTo(options.questions[idxCQ].backtime || (options.questions[idxCQ].end - 0.3));
 					}
 					
 					options.questions.forEach(function(question, idx) {
