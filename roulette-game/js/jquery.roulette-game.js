@@ -47,7 +47,10 @@
 										 .on('click', function(){
 										 	var _this = $(this);
 
-										 	if(question.answers[_this.data('q')].correct) {
+										 	if (ul.hasClass('answered')) return;
+
+										 	if (question.answers[_this.data('q')].correct === undefined 
+										 				|| question.answers[_this.data('q')].correct === true) {
 										 		_this.addClass('correct');
 
 										 	} else {
@@ -58,6 +61,10 @@
 										 			return question.answers[_this.data('q')].correct;
 										 		}).addClass('correct')
 										 	}
+
+										 	ul.addClass('answered');
+
+										 	options.answerClick && options.answerClick(question, _this.data('q'));
 										 });
 							}
 
